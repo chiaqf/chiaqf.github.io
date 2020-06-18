@@ -1,0 +1,279 @@
+<h1 id="jQuery-iframe-auto-height-plugin"><a href="#jQuery-iframe-auto-height-plugin" class="headerlink" title="jQuery iframe auto height plugin"></a>jQuery iframe auto height plugin</h1><h2 id="Alternatives"><a href="#Alternatives" class="headerlink" title="Alternatives:"></a>Alternatives:</h2><p>You may want to consider one of these alternative solutions for your iframe resizing needs?</p>
+<ul>
+<li>Iframe-resizer<ul>
+<li><a href="http://davidjbradshaw.github.io/iframe-resizer/" target="_blank" rel="noopener">http://davidjbradshaw.github.io/iframe-resizer/</a></li>
+<li>jQuery pluggin for cross domain sizing iframes to content with support for window resizing</li>
+</ul>
+</li>
+<li>easyXDM<ul>
+<li><a href="http://easyxdm.net/wp/2010/03/17/resize-iframe-based-on-content/" target="_blank" rel="noopener">http://easyxdm.net/wp/2010/03/17/resize-iframe-based-on-content/</a></li>
+<li>Resize iframe based on content</li>
+</ul>
+</li>
+<li>jQuery resize plugin<ul>
+<li><a href="http://benalman.com/projects/jquery-resize-plugin/" target="_blank" rel="noopener">http://benalman.com/projects/jquery-resize-plugin/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ATTENTION"><a href="#ATTENTION" class="headerlink" title="ATTENTION"></a>ATTENTION</h2><p>This plugin will NOT work if the iframe contains a page from another domain, use one of the alternate libraries above if you need cross domain resize.</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage:"></a>Usage:</h2><ul>
+<li>include jquery in your page</li>
+<li>include the latest version from the <a href="https://github.com/house9/jquery-iframe-auto-height/tree/master/release" target="_blank" rel="noopener">release directory</a>; minified or standard</li>
+<li>use the variable jQuery or its alias $ and pass a selector that matches one or more iframes</li>
+</ul>
+<p><code>jQuery(&#39;iframe&#39;).iframeAutoHeight();</code> will resize all iframes on the page</p>
+<p><code>$(&#39;iframe.photo&#39;).iframeAutoHeight();</code> will resize only iframes with the css class photo</p>
+<p>code can be called from within $(document).ready or after iframes are declared in markup</p>
+<pre><code>&lt;!-- with document ready, most likely in the html head --&gt;
+&lt;script&gt;
+  $(document).ready(function () {
+    $(&apos;iframe&apos;).iframeAutoHeight({debug: true});
+  });
+&lt;/script&gt;
+
+&lt;!-- inline, after the iframe --&gt;
+&lt;iframe src=&quot;my_iframe.html&quot; class=&quot;auto-height&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+&lt;script&gt;
+  $(&apos;iframe.auto-height&apos;).iframeAutoHeight({minHeight: 240});
+&lt;/script&gt;</code></pre><h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><ul>
+<li>jQuery 1.9.0 and up: you must add the $.browser plugin feature - <a href="https://raw.github.com/house9/jquery-iframe-auto-height/master/release/jquery.browser.js" target="_blank" rel="noopener">https://raw.github.com/house9/jquery-iframe-auto-height/master/release/jquery.browser.js</a><ul>
+<li>download and include after the jquery plugin and before the iframe plugin</li>
+</ul>
+</li>
+<li>1.7.1 and below: you can also install using jamjs - <a href="http://jamjs.org/packages/#/details/jquery-iframe-auto-height" target="_blank" rel="noopener">http://jamjs.org/packages/#/details/jquery-iframe-auto-height</a></li>
+</ul>
+<h3 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h3><ul>
+<li>callback: function<ul>
+<li>Default empty function</li>
+<li>Optionally define a callback function (in this case inline) that will do something with the callbackObject.newFrameHeight value. This can for instance be used with easyXDM to alert another domain that the frame has changed height.</li>
+<li>Example: <code>$(&#39;iframe&#39;).iframeAutoHeight({callback: function(callbackObject) { alert(callbackObject.newFrameHeight);} });</code></li>
+<li>you can also access the current iframe jquery wrapper object use the <code>this</code> keyword</li>
+<li>for example: <code>callback: function(callbackObject) { alert(callbackObject.newFrameHeight + &quot; and the iframe href is:&quot; + $(this).attr(&#39;src&#39;)); }</code></li>
+</ul>
+</li>
+<li>debug: boolean<ul>
+<li>Default is false</li>
+<li>Will log some internal information to the console, if available</li>
+<li>Example: <code>$(&#39;iframe&#39;).iframeAutoHeight({debug: true})</code></li>
+</ul>
+</li>
+<li>heightOffset: integer<ul>
+<li>Default is 0</li>
+<li>Unit is pixels</li>
+<li>Optionally add some buffer to the bottom</li>
+<li>Example: <code>$(&#39;iframe&#39;).iframeAutoHeight({heightOffset: 20});</code></li>
+</ul>
+</li>
+<li>minHeight: integer<ul>
+<li>Default is 0</li>
+<li>Unit is pixels</li>
+<li>Sets the iframe height to this value if the calculated value is less</li>
+<li>Example: <code>$(&#39;iframe&#39;).iframeAutoHeight({minHeight: 200});</code></li>
+</ul>
+</li>
+<li>animate: boolean<ul>
+<li>Default is false</li>
+<li>Uses <a href="http://api.jquery.com/animate/" target="_blank" rel="noopener">jquery animate</a> with duration of 500 when resizing the iframe</li>
+<li>Example: <code>$(&#39;iframe&#39;).iframeAutoHeight({animate: true});</code></li>
+</ul>
+</li>
+<li>resetToMinHeight: boolean<ul>
+<li>Default is false</li>
+<li>hard set the iframe height to the minHeight before re-sizing</li>
+</ul>
+</li>
+<li>triggerFunctions: Array of functions<ul>
+<li>Default is an empty array</li>
+<li>Optionally define 1 or more functions that will have access to the resize method</li>
+<li>can be used to resize the iframe from external events such as click or window resize - see examples below</li>
+</ul>
+</li>
+<li>heightCalculationOverrides: Array of 2 element arrays<ul>
+<li>Default is an empty array</li>
+<li>Optionally re-define the height calculation method(s)</li>
+<li>override the default implementation or just override specific browsers</li>
+<li>Example: <code>$(&#39;iframe&#39;).iframeAutoHeight({strategyOverrides: [{ browser: &#39;mozilla&#39;, calculation: function () { return 2000; }}]);</code></li>
+<li>The <code>browser</code> key should be one of ‘webkit’, ‘mozilla’, ‘msie’, ‘opera’ or ‘default’, see <a href="http://api.jquery.com/jQuery.browser/" target="_blank" rel="noopener">http://api.jquery.com/jQuery.browser/</a></li>
+<li>The <code>calculation</code> key should be a function, usually with the signature <code>(iframe, $iframeBody, options, browser)</code></li>
+<li>see more examples below</li>
+</ul>
+</li>
+</ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples:"></a>Examples:</h2><h3 id="triggerFunctions"><a href="#triggerFunctions" class="headerlink" title="triggerFunctions"></a>triggerFunctions</h3><pre><code>// fire iframe resize when window is resized
+var windowResizeFunction = function (resizeFunction, iframe) {
+  $(window).resize(function () {
+    console.debug(&quot;window resized - firing resizeHeight on iframe&quot;);
+    resizeFunction(iframe);
+  });
+};
+
+// fire iframe resize when a link is clicked
+var clickFunction = function (resizeFunction, iframe) {
+  $(&apos;a&apos;).click(function () {
+    $(iframe).contents().find(&apos;body&apos;).html(&apos;&apos;); // clear content of iframe
+    console.debug(&quot;link clicked - firing resizeHeight on iframe&quot;);
+    resizeFunction(iframe);
+  });
+};
+
+$(&apos;iframe&apos;).iframeAutoHeight({
+  debug: true,
+  triggerFunctions: [
+    windowResizeFunction,
+    clickFunction
+  ]
+});
+</code></pre><h3 id="heightCalculationOverrides"><a href="#heightCalculationOverrides" class="headerlink" title="heightCalculationOverrides"></a>heightCalculationOverrides</h3><pre><code>// override all browser calculations using default
+$(&apos;iframe&apos;).iframeAutoHeight({
+  debug: true,
+  heightCalculationOverrides: [{
+    browser: &apos;default&apos;,
+    calculation: function (iframe, $iframeBody, options, browser) {
+      return 1000;
+    }
+  }]
+});
+
+// mozilla seems to be problematic for some
+// this is the usual work around, but it breaks demo pages so not used in plugin
+$(&apos;iframe&apos;).iframeAutoHeight({
+  debug: true,
+  heightCalculationOverrides: [{
+    browser: &apos;mozilla&apos;,
+    calculation: function (iframe, $iframeBody, options, browser) {
+      // since the jquery browser is passed in you can also check specific versions if desired
+      return iframe.contentDocument.documentElement.scrollHeight + options.heightOffset;
+    }
+  }]
+});</code></pre><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary:"></a>Summary:</h2><p>original code by NATHAN SMITH; see <a href="http://sonspring.com/journal/jquery-iframe-sizing" target="_blank" rel="noopener">http://sonspring.com/journal/jquery-iframe-sizing</a></p>
+<p>The plugin will resize an iframe to the height of its contents</p>
+<p>Will NOT work if the iframe contains a page from another domain</p>
+<p>When viewing code locally, i.e. file:///, Google chrome will throw security errors;<br>Works fine in Firefox locally and should work ok in all browsers when served from the same domain.</p>
+<p>All testing is done manually:</p>
+<p>1.6.0 and 1.7.0 have not been officially tested, but the changes were minor<br>1.8.0 has had minor testing</p>
+<ul>
+<li>IE6 on windows XP (1.4.1, 1.5.0)</li>
+<li>IE8 on windows XP (1.4.1, 1.5.0)</li>
+<li>IE9 on windows Vista/W7 (1.4.1, 1.5.0)</li>
+<li>Firefox 5 on windows XP (1.4.1, 1.5.0)</li>
+<li>Firefox 6 on W7 (1.5.0)</li>
+<li>Chrome 13 on windows XP (1.4.1, 1.5.0)</li>
+<li>Firefox 5.1 on Mac (1.4.1, 1.5.0)</li>
+<li>Firefox 6.0 on Mac (1.5.0)</li>
+<li>Firefox 15.1 on Mac (1.8.0)</li>
+<li>Chrome 13 on Mac (1.4.1, 1.5.0)</li>
+<li>Chrome 21 on Mac (1.8.0)</li>
+<li>Safari 5 on Mac (1.4.1, 1.5.0)</li>
+<li>Opera 11.5 on Mac (1.4.1)</li>
+<li>Firefox 4 on Ubuntu 11.04 (1.4.1)</li>
+<li>Chrome 11 on Ubuntu 11.04 (1.4.1)</li>
+</ul>
+<h2 id="License"><a href="#License" class="headerlink" title="License:"></a>License:</h2><p>The plugin: release/jquery.iframe-auto-height.plugin.js</p>
+<ul>
+<li><a href="http://unlicense.org" target="_blank" rel="noopener">The Unlicense</a> (aka: public domain)</li>
+</ul>
+<p>See specific license for any other code included, i.e. jquery</p>
+<h2 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog:"></a>Changelog:</h2><p>1.9.5 / 2014-05-17</p>
+<ul>
+<li>Update the way that the initial resize happens<ul>
+<li>load event may never trigger if content is already loaded</li>
+</ul>
+</li>
+</ul>
+<p>1.9.4 / 2014-05-14</p>
+<ul>
+<li>maxHeight option</li>
+</ul>
+<p>1.9.3 / 2013-06-01</p>
+<ul>
+<li>the url was bad - doh!</li>
+</ul>
+<p>1.9.2 / 2013-06-01</p>
+<ul>
+<li>update url for jquery browser plugin, original repo was removed from github</li>
+<li>jslint fixes</li>
+</ul>
+<p>1.9.1 / 2013-02-02</p>
+<ul>
+<li>Add js alert warning if using jquery 1.9 and up, <code>$.browser</code> is needed</li>
+</ul>
+<p>1.9.0 / 2012-11-11</p>
+<ul>
+<li>use the <code>$.browser.webkit</code> in-place of <code>$.browser.safari</code>, requires jquery 1.4 and up</li>
+</ul>
+<p>1.8.0 / 2012-09-22</p>
+<ul>
+<li>new option - resetToMinHeight</li>
+<li>new option - triggerFunctions</li>
+<li>new option - heightCalculationOverrides</li>
+</ul>
+<p>1.7.1 / 2012-06-02</p>
+<ul>
+<li>webkit browsers, don’t set iframe.style.height to 0px on initial page load</li>
+</ul>
+<p>1.7.0 / 2012-06-02</p>
+<ul>
+<li>adds the animate option</li>
+</ul>
+<p>1.6.0 / 2012-01-07</p>
+<ul>
+<li>callback function invoking now allows access to the iframe in the callback</li>
+</ul>
+<p>1.5.0 / 2011-08-18</p>
+<ul>
+<li>add minHeight option, refactoring height calculation</li>
+</ul>
+<p>1.4.0 / 2011-07-25</p>
+<ul>
+<li>add debug option, small refactoring and minified version</li>
+</ul>
+<p>1.3.0 / 2011-07-17</p>
+<ul>
+<li>fix issue on Webkit (Google Chrome &amp; Safari) when tall iframe links to short iframe</li>
+</ul>
+<p>1.2.0 / 2011-07-08</p>
+<ul>
+<li>If the iframe document is read in quirks mode, fixed a problem with IE not applying the correct height.</li>
+</ul>
+<p>1.1.0 / 2011-05-29</p>
+<ul>
+<li>added the ability to pass in a callback function</li>
+</ul>
+<p>1.0.0 / 2010-10-22 / Initial release</p>
+<ul>
+<li>converted code to plugin</li>
+<li>match on specified selector instead of all iframes on page</li>
+</ul>
+<h2 id="Authors"><a href="#Authors" class="headerlink" title="Authors"></a>Authors</h2><ul>
+<li>NATHAN SMITH (<a href="http://sonspring.com/" target="_blank" rel="noopener">http://sonspring.com/</a>)</li>
+<li>Jesse House (<a href="https://github.com/house9" target="_blank" rel="noopener">https://github.com/house9</a>)</li>
+<li>aaron manela (<a href="https://github.com/aaronmanela" target="_blank" rel="noopener">https://github.com/aaronmanela</a>)</li>
+<li>Hideki Abe (<a href="https://github.com/hideki-a" target="_blank" rel="noopener">https://github.com/hideki-a</a>)</li>
+<li>Patrick Clark (<a href="https://github.com/hellopat" target="_blank" rel="noopener">https://github.com/hellopat</a>)</li>
+<li>ChristineP2 (<a href="https://github.com/ChristineP2" target="_blank" rel="noopener">https://github.com/ChristineP2</a>)</li>
+<li>Mmjavellana (<a href="https://github.com/Mmjavellana" target="_blank" rel="noopener">https://github.com/Mmjavellana</a>)</li>
+<li>yiqing-95 (<a href="https://github.com/yiqing-95" target="_blank" rel="noopener">https://github.com/yiqing-95</a>)</li>
+<li>jcaspian (<a href="https://github.com/jcaspian" target="_blank" rel="noopener">https://github.com/jcaspian</a>)</li>
+<li>adamjgray (<a href="https://github.com/adamjgray" target="_blank" rel="noopener">https://github.com/adamjgray</a>)</li>
+<li>Jens Bissinger (<a href="https://github.com/dpree" target="_blank" rel="noopener">https://github.com/dpree</a>)</li>
+<li>jbreton (<a href="https://github.com/jbreton" target="_blank" rel="noopener">https://github.com/jbreton</a>)</li>
+<li>mindmelting (<a href="https://github.com/mindmelting" target="_blank" rel="noopener">https://github.com/mindmelting</a>)</li>
+</ul>
+<h2 id="TODO-List"><a href="#TODO-List" class="headerlink" title="TODO List:"></a>TODO List:</h2><ul>
+<li>create a bower package</li>
+<li>publish demo site to heroku</li>
+<li>automated tests</li>
+</ul>
+<h2 id="Patches"><a href="#Patches" class="headerlink" title="Patches:"></a>Patches:</h2><p>The ‘master’ source file is located in the demo_on_rails directory <a href="https://github.com/house9/jquery-iframe-auto-height/tree/master/demo_on_rails/app/assets/javascripts/src/jquery.iframe-auto-height.plugin.js" target="_blank" rel="noopener">here</a><br>All html files in the <a href="https://github.com/house9/jquery-iframe-auto-height/tree/master/demo" target="_blank" rel="noopener">demo directory</a> point to this ‘master’ file.<br>When modifying the code you can view changes in the static html files in demo or fire up the rails app in demo_on_rails.</p>
+<p>If you have ruby installed you might want to utilize some of these tools, first run <code>bundle</code> to install needed gems</p>
+<p>jslint checking</p>
+<p><code>jslint demo_on_rails/app/assets/javascripts/src/jquery.iframe-auto-height.plugin.js</code></p>
+<p>before the rails app was part of this project I used webrick for testing the static html files in webkit browsers,<br>but using localhost and file:/// are problematic, webrick can use your local machine ip address and any port you want</p>
+<p><code>ruby webrick.rb --port 3333 --bind 192.168.0.5 --docroot .</code></p>
+<p>Building the release</p>
+<p>First update the version.rb file, then run the ruby command. The script will put two files in the release directory,<br>one minified and one full. A small amount of search and replace takes place on the comment block for output files.</p>
+<p><code>ruby releaser.rb</code></p>
+<h2 id="Known-Issues"><a href="#Known-Issues" class="headerlink" title="Known Issues"></a>Known Issues</h2><ul>
+<li>with IE8 it seems better to not specify the height attribute on the iframe</li>
+</ul>
+<h2 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h2><p>If you come across issues feel free to post them using the ‘Issues’ tab above (github)</p>
