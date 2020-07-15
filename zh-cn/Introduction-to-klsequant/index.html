@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>靠PE选股有用吗?? - &lt;/&gt;klsequant | Solving the Market using Maths</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<link href="/Introduction-to-klsequant/" rel="alternate" hreflang="en" />
+    
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="PE, ROE, DY&amp;#x5230;&amp;#x5E95;&amp;#x54EA;&amp;#x4E00;&amp;#x4E2A;&amp;#x624D;&amp;#x6709;&amp;#x7528;?? &amp;#x4EF7;&amp;#x503C;&amp;#x6295;&amp;#x8D44;&amp;#x8005;&amp;#x4EEC;&amp;#x63A8;&amp;#x5D07;&amp;#x4F4E;PE, &amp;#x7528;&amp;#x6700;&amp;#x9AD8;&amp;#x7684;&amp;#x5B89;&amp;#x516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="靠PE选股有用吗??">
+<meta property="og:url" content="http://yoursite.com/zh-cn/Introduction-to-klsequant/index.html">
+<meta property="og:site_name" content="&lt;&#x2F;&gt;klsequant | Solving the Market using Maths">
+<meta property="og:description" content="PE, ROE, DY&amp;#x5230;&amp;#x5E95;&amp;#x54EA;&amp;#x4E00;&amp;#x4E2A;&amp;#x624D;&amp;#x6709;&amp;#x7528;?? &amp;#x4EF7;&amp;#x503C;&amp;#x6295;&amp;#x8D44;&amp;#x8005;&amp;#x4EEC;&amp;#x63A8;&amp;#x5D07;&amp;#x4F4E;PE, &amp;#x7528;&amp;#x6700;&amp;#x9AD8;&amp;#x7684;&amp;#x5B89;&amp;#x516">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/img/klsequant_snapshot.png">
+<meta property="og:image" content="http://yoursite.com/img/ui_snapshot.png">
+<meta property="og:image" content="http://yoursite.com/img/demo_input_snapshot.png">
+<meta property="og:image" content="http://yoursite.com/img/output_graph_snapshot.png">
+<meta property="og:image" content="http://yoursite.com/img/output_table_snapshot.png">
+<meta property="og:image" content="http://yoursite.com/img/output_pe_min15_snapshot.png">
+<meta property="og:image" content="http://yoursite.com/img/output_pe_max15_snapshot.png">
+<meta property="article:published_time" content="2020-07-02T13:26:55.000Z">
+<meta property="article:modified_time" content="2020-07-15T15:02:05.716Z">
+<meta property="article:tag" content="Backtesting">
+<meta property="article:tag" content="Stock Picking">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/img/klsequant_snapshot.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171670897-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171670897-1');
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/zh-cn">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/zh-cn/archives">归档</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+            
+<div class="column is-narrow has-text-centered">
+    <div class="dropdown is-up is-right is-hoverable" style="margin-top: -0.2em;">
+        <div class="dropdown-trigger">
+            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu7">
+                <span class="icon">
+                    <i class="fas fa-globe"></i>
+                </span>
+                <span>简体中文</span>
+                <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </button>
+        </div>
+        <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
+            <div class="dropdown-content">
+            
+                <a href="/Introduction-to-klsequant/" class="dropdown-item">
+                    English
+                </a>
+            
+                <a href="/zh-cn/Introduction-to-klsequant/" class="dropdown-item">
+                    简体中文
+                </a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            靠PE选股有用吗??
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-07-02T13:26:55.000Z" itemprop="datePublished">7月 2 2020</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            10 分钟 读完 (约 1520 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>PE, ROE, DY&#x5230;&#x5E95;&#x54EA;&#x4E00;&#x4E2A;&#x624D;&#x6709;&#x7528;?? &#x4EF7;&#x503C;&#x6295;&#x8D44;&#x8005;&#x4EEC;&#x63A8;&#x5D07;&#x4F4E;PE, &#x7528;&#x6700;&#x9AD8;&#x7684;&#x5B89;&#x5168;&#x8FB9;&#x9645;&#x6765;&#x4E70;&#x80A1;. &#x6210;&#x957F;&#x578B;&#x6295;&#x8D44;&#x8005;&#x53C8;&#x4E0D;&#x8FD9;&#x4E48;&#x8BA4;&#x4E3A;&#x4E86;, &#x4ED6;&#x4EEC;&#x5C31;&#x8BA4;&#x4E3A;&#x6210;&#x957F;&#x4E2D;&#x7684;&#x516C;&#x53F8;&#x5C31;&#x7B97;&#x6709;&#x9AD8;PE&#x4E5F;&#x662F;&#x6CA1;&#x5173;&#x7CFB;&#x7684;, &#x80A1;&#x7968;&#x91CC;&#x6CA1;&#x6709;&#x5BF9;&#x4E0E;&#x9519;&#x5C31;&#x53EA;&#x6709;&#x6700;&#x9002;&#x5408;&#x81EA;&#x5DF1;&#x7684;&#x7B56;&#x7565;. &#x8A00;&#x5F52;&#x6B63;&#x9898;, &#x5230;&#x5E95;&#x54EA;&#x4E00;&#x4E2A;&#x6307;&#x6807;&#x624D;&#x80FD;&#x5E2E;&#x52A9;&#x4F60;&#x627E;&#x5230;&#x80FD;&#x8D5A;&#x94B1;&#x7684;&#x597D;&#x80A1;&#x5462;? &#x6211;&#x4EEC;&#x6765;&#x63A2;&#x8BA8;&#x4E00;&#x4E0B;.</p>
+<a id="more"></a>
+<h2 id="&#x9686;&#x91CD;&#x4ECB;&#x7ECD;-klsequant-&#x80A1;&#x7968;&#x56DE;&#x6D4B;&#x7F51;&#x7EDC;&#x7A0B;&#x5E8F;"><a href="#&#x9686;&#x91CD;&#x4ECB;&#x7ECD;-klsequant-&#x80A1;&#x7968;&#x56DE;&#x6D4B;&#x7F51;&#x7EDC;&#x7A0B;&#x5E8F;" class="headerlink" title="&#x9686;&#x91CD;&#x4ECB;&#x7ECD; klsequant &#x80A1;&#x7968;&#x56DE;&#x6D4B;&#x7F51;&#x7EDC;&#x7A0B;&#x5E8F;"></a>&#x9686;&#x91CD;&#x4ECB;&#x7ECD; klsequant &#x80A1;&#x7968;&#x56DE;&#x6D4B;&#x7F51;&#x7EDC;&#x7A0B;&#x5E8F;</h2><p>&#x4ECA;&#x5929;&#x6211;&#x5C31;&#x50CF;&#x5927;&#x5BB6;&#x4ECB;&#x7ECD;&#x6211;&#x5728;MCO&#x671F;&#x95F4;&#x5199;&#x7684;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#x7A0B;&#x5E8F; <strong><a href="https://www.klsequant.com" target="_blank" rel="noopener">https://www.klsequant.com</a></strong></p>
+<p><img src="/img/klsequant_snapshot.png" alt="klsequant web app"></p>
+<p>&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x6709;&#x4EC0;&#x4E48;&#x529F;&#x80FD;&#x5462;? <strong>&#x5B83;&#x80FD;&#x62FF;&#x6765;&#x505A;&#x4EC0;&#x4E48;? &#x80FD;&#x5403;&#x7684;&#x5417;?</strong> &#x5B83;&#x7684;&#x529F;&#x80FD;&#x662F;, &#x5F53;&#x4F60;&#x60F3;&#x51FA;&#x6216;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x9009;&#x80A1;&#x7B56;&#x7565;&#x65F6;, &#x4F8B;&#x5982;&#x5F53;PE&#x5C0F;&#x4E8E;10&#x548C;ROE&#x5927;&#x4E8E;20&#x7684;&#x65F6;&#x5019;&#x4E70;&#x5165;. &#x7136;&#x540E;&#x4F60;&#x5C31;&#x80FD;&#x7528;klsequant&#x6765;&#x56DE;&#x6D4B;&#x4F60;&#x7684;&#x9009;&#x80A1;&#x7B56;&#x7565;, &#x6765;&#x8BC4;&#x4F30;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x8FC7;&#x53BB;&#x7684;&#x8868;&#x73B0;. &#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x4F1A;&#x663E;&#x793A;&#x8FC7;&#x53BB;10&#x5E74;&#x7684;&#x8868;&#x73B0;, &#x5B83;&#x7528;&#x7684;&#x6570;&#x636E;&#x662F;2010-2019&#x6BCF;&#x4E00;&#x4E2A;&#x5728;&#x9A6C;&#x6765;&#x897F;&#x4E9A;&#x4E0A;&#x5E02;&#x7684;&#x80A1;&#x7968;.</p>
+<p>&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x7A0B;&#x5E8F;&#x662F;&#x57FA;&#x4E8E;Python Flask&#x6846;&#x67B6;&#x6765;develope&#x7684;. &#x867D;&#x7136;&#x4EE5;&#x524D;&#x7ECF;&#x5E38;&#x7528;Python&#x6765;&#x505A;&#x5206;&#x6790;&#x53EF;&#x662F;&#x6CA1;&#x6709;&#x8BD5;&#x8FC7;&#x5728;web&#x7684;&#x73AF;&#x5883;&#x7528;Python, &#x8FD9;&#x4E5F;&#x7B97;&#x662F;&#x5BF9;&#x6211;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E2A;&#x6280;&#x672F;&#x6311;&#x6218;. Code&#x597D;&#x540E;&#x6211;&#x7528;&#x7684;&#x662F; <a href="https://www.pythonanywhere.com" target="_blank" rel="noopener">pythonanywhere</a> &#x6765;host&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;. &#x5982;&#x679C;&#x4F60;&#x4E5F;&#x6709;&#x7528;Python&#x7684;&#x8BDD;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x8FD9;&#x4E2A;&#x670D;&#x52A1;, &#x4EF7;&#x94B1;&#x5408;&#x7406;, &#x4E5F;&#x6709;&#x514D;&#x8D39;&#x7684;&#x914D;&#x5957;.</p>
+<h2 id="&#x7528;&#x6237;&#x754C;&#x9762;-UI"><a href="#&#x7528;&#x6237;&#x754C;&#x9762;-UI" class="headerlink" title="&#x7528;&#x6237;&#x754C;&#x9762; UI"></a>&#x7528;&#x6237;&#x754C;&#x9762; UI</h2><p><img src="/img/ui_snapshot.png" alt="klsequant web app user interface"></p>
+<p>&#x5148;&#x6765;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x754C;&#x9762;, &#x8FD9;&#x91CC;&#x6709;&#x603B;&#x5171;14&#x4E2A;&#x9009;&#x9879;&#x7ED9;&#x4F60;, Maximum number of Shares(&#x6700;&#x9AD8;&#x6301;&#x80A1;&#x6570;&#x91CF;) &#x8FD9;&#x680F;&#x662F;&#x5FC5;&#x586B;&#x7684;, &#x5176;&#x4ED6;&#x9009;&#x9879;&#x5C31;&#x6839;&#x636E;&#x4F60;&#x9009;&#x80A1;&#x7B56;&#x7565;&#x6765;&#x586B;, &#x4E0D;&#x9700;&#x8981;&#x7684;&#x5C31;&#x7A7A;&#x7740;&#x7F62;&#x4E86;.</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>&#x8BDD;&#x4E0D;&#x591A;&#x8BF4;, &#x5148;&#x6765;&#x4E2A;demo. &#x6211;&#x60F3;&#x56DE;&#x6D4B;&#x6211;&#x7684;&#x9009;&#x80A1;&#x7B56;&#x7565;, &#x6211;&#x7684;&#x7B56;&#x7565;&#x5982;&#x4E0B;</p>
+<ol>
+<li>PE &#x5C0F;&#x4E8E; 10</li>
+<li>ROE &#x5927;&#x4E8E; 15</li>
+<li>DY &#x5927;&#x4E8E; 3</li>
+</ol>
+<p>&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x80A1;&#x7968;&#x7B26;&#x5408;&#x8FD9;&#x4E2A;&#x6761;&#x4EF6;&#x7684;&#x8BDD;, &#x7A0B;&#x5E8F;&#x5C31;&#x4F1A;&#x201D;&#x4E70;&#x5165;&#x201D;. &#x4E00;&#x4E2A;&#x6708;&#x540E;, &#x91CD;&#x590D;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;, &#x5982;&#x679C;&#x4E0A;&#x4E2A;&#x6708;&#x201D;&#x4E70;&#x5165;&#x201D;&#x7684;&#x80A1;&#x9879;&#x8FD8;&#x7B26;&#x5408;&#x4F60;&#x7684;&#x7B56;&#x7565;, &#x90A3;&#x4E48;&#x7A0B;&#x5E8F;&#x5C31;&#x4F1A;&#x7EE7;&#x7EED;&#x4FDD;&#x7559;&#x8FD9;&#x4E2A;&#x80A1;&#x7968;, &#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x4E0D;&#x7B26;&#x5408;&#x4E86;, &#x7A0B;&#x5E8F;&#x5C31;&#x4F1A;&#x628A;&#x90A3;&#x4E2A;&#x80A1;&#x7968;&#x201D;&#x5356;&#x51FA;&#x201D;. &#x5982;&#x679C;&#x4F60;&#x60F3;&#x73A9;&#x66F4;&#x957F;&#x671F;&#x7684;, &#x53EF;&#x4EE5;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x9009;&#x9879;&#x9009;weekly, monthly, &#x6700;&#x4E45;&#x7684;&#x662F;yearly. &#x8FD9;&#x5C31;&#x662F;&#x4F60;&#x8C03;&#x914D;&#x4ED3;&#x4F4D;&#x7684;&#x9891;&#x7387;, &#x5C31;&#x8981;&#x770B;&#x4F60;&#x7684;&#x7B56;&#x7565;&#x662F;&#x957F;&#x671F;&#x8FD8;&#x662F;&#x77ED;&#x671F;&#x7B56;&#x7565;&#x54AF;. &#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x5B9E;&#x9A8C;&#x4E00;&#x4E0B;&#x5230;&#x5E95;&#x957F;&#x671F;&#x8FD8;&#x662F;&#x77ED;&#x671F;&#x6295;&#x8D44;&#x6BD4;&#x8F83;&#x597D;.</p>
+<p><img src="/img/demo_input_snapshot.png" alt="klsequant web app demo input"></p>
+<p>&#x5230;&#x5E95;&#x6211;&#x7684;&#x9009;&#x80A1;&#x7B56;&#x7565;&#x8868;&#x73B0;&#x5982;&#x4F55;&#x5462;? &#x56DE;&#x6D4B;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x7684;&#x5E74;&#x534E;&#x56DE;&#x916C;&#x662F;36%, &#x7B97;&#x662F;&#x975E;&#x5E38;&#x597D;&#x7684;&#x56DE;&#x916C;&#x4E86;. &#x800C;&#x4E14;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x4E5F;&#x8DD1;&#x8D62;&#x4E86;&#x5927;&#x5E02;(&#x7EA2;&#x7EBF;&#x662F;&#x5927;&#x9A6C;&#x7EFC;&#x5408;&#x6307;&#x6570;&#x7684;&#x56DE;&#x916C;). Capital RM1,000&#x7684;&#x610F;&#x601D;&#x662F;&#x8D77;&#x521D;&#x8D44;&#x91D1;&#x662F;1&#x5343;.</p>
+<p>&#x518D;&#x4ED4;&#x7EC6;&#x4E00;&#x70B9;&#x7684;&#x89E3;&#x91CA;&#x5982;&#x4E0B;</p>
+<p><img src="/img/output_graph_snapshot.png" alt="output graph"></p>
+<p>&#x7EFF;&#x7EBF;&#x4EE3;&#x8868;&#x7684;&#x662F;&#x4F60;&#x7B56;&#x7565;&#x7684;&#x8D44;&#x91D1;&#x6210;&#x957F;&#x7EBF;, &#x7EA2;&#x7EBF;&#x4EE3;&#x8868;&#x5927;&#x9A6C;&#x7EFC;&#x5408;&#x6307;&#x6570;&#x7684;&#x8D44;&#x91D1;&#x6210;&#x957F;. &#x8981;&#x600E;&#x4E48;&#x8BC4;&#x4F30;&#x4F60;&#x7684;&#x7B56;&#x7565;&#x597D;&#x4E0D;&#x597D;&#x5462;, &#x4E00;&#x4E2A;&#x5E38;&#x7528;&#x7684;&#x7B56;&#x7565;&#x662F;&#x7528;&#x5927;&#x5E02;&#x6765;&#x6BD4;&#x8F83;. (&#x5982;&#x679C;&#x4F60;&#x7684;&#x7B56;&#x7565;&#x8DD1;&#x8F93;&#x5927;&#x5E02;&#x4F60;&#x4E0D;&#x5982;&#x76F4;&#x63A5;&#x4E70;&#x9A6C;&#x80A1;ETF&#x66F4;&#x597D;)</p>
+<p>Maximum return&#x662F;&#x671F;&#x95F4;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x6700;&#x5927;&#x7684;&#x4E00;&#x4E2A;&#x6536;&#x76CA;, &#x8FD9;&#x91CC;&#x663E;&#x793A;&#x662F;48.3%, &#x610F;&#x601D;&#x662F;&#x8BF4;&#x8FD9;&#x671F;&#x95F4;&#x6709;&#x4E00;&#x4E2A;&#x80A1;&#x7968;&#x5728;&#x4E00;&#x4E2A;&#x6708;&#x91CC;&#x8FBE;&#x5230;&#x4E86;48.4%&#x7684;&#x56DE;&#x916C;. Minimum return, &#x6700;&#x4F4E;&#x56DE;&#x916C;&#x662F;-13.81%, &#x8FD9;&#x4E5F;&#x4E0D;&#x9519;&#x561B;&#x6700;&#x5927;&#x56DE;&#x916C;&#x8FDC;&#x8FDC;&#x6BD4;&#x6700;&#x4F4E;&#x56DE;&#x916C;&#x9AD8;. Average return&#x662F;&#x6307;&#x4F60;&#x5E73;&#x5747;&#x6BCF;&#x4E00;&#x4E2A;&#x4EA4;&#x6613;&#x7684;&#x56DE;&#x916C;&#x662F;&#x591A;&#x5C11;. CAGR&#x5C31;&#x662F;&#x5E74;&#x5316;&#x56DE;&#x916C;, &#x8FD9;&#x7B56;&#x7565;&#x6709;&#x7740;36%&#x7684;&#x5E74;&#x5316;&#x56DE;&#x916C;. &#x8BDD;&#x8BF4;&#x8FD9;&#x7B56;&#x7565;&#x4E5F;&#x5927;&#x5927;&#x7684;&#x8DD1;&#x8D62;&#x4E86;&#x6307;&#x6570;, 10&#x5E74;&#x95F4;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x4F1A;&#x628A;&#x4F60;&#x7684;RM1,000&#x53D8;&#x6210;RM16,000, &#x53CD;&#x800C;&#x6307;&#x6570;&#x53EA;&#x80FD;&#x628A;&#x4F60;&#x7684;RM1,000&#x53D8;&#x6210;RM1,131.</p>
+<p><img src="/img/output_table_snapshot.png" alt="history of all stocks bought under the strategy"></p>
+<p>&#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x5230;&#x5E95;&#x6293;&#x5230;&#x4E86;&#x4EC0;&#x4E48;&#x80A1;&#x5462;? &#x8FD9;&#x4E2A;&#x8868;&#x683C;&#x5C31;&#x663E;&#x793A;&#x4E86;&#x671F;&#x95F4;&#x6240;&#x6709;&#x88AB;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x6293;&#x5230;&#x7684;&#x80A1;&#x7968;. &#x4ECE;&#x8FD9;&#x91CC;&#x4F60;&#x53EF;&#x4EE5;&#x5927;&#x6982;&#x77E5;&#x9053;&#x4F60;&#x7B56;&#x7565;&#x9009;&#x51FA;&#x6765;&#x7684;&#x516C;&#x53F8;&#x662F;&#x600E;&#x4E48;&#x6837;&#x7684;. &#x4F60;&#x4E5F;&#x8BB8;&#x4F1A;&#x597D;&#x5947;&#x4E3A;&#x4EC0;&#x4E48;&#x4E00;&#x4E0B;&#x6708;&#x4EFD;&#x53EA;&#x6301;&#x6709;3&#x4E2A;&#x80A1;&#x7968;, &#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5F53;&#x65F6;&#x7B26;&#x5408;&#x6761;&#x4EF6;&#x7684;&#x80A1;&#x7968;&#x53EA;&#x6709;3&#x4E2A;, &#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x201D;&#x4E70;&#x5165;&#x201D;&#x7684;&#x5C31;&#x53EA;&#x6709;3&#x4E2A;. (&#x6709;&#x6CA1;&#x6709;&#x53D1;&#x73B0;&#x5230;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x6293;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x8D85;&#x7EA7;&#x725B;&#x80A1; VITROX?)</p>
+<h2 id="&#x4E8B;&#x540E;&#x60F3;&#x6CD5;"><a href="#&#x4E8B;&#x540E;&#x60F3;&#x6CD5;" class="headerlink" title="&#x4E8B;&#x540E;&#x60F3;&#x6CD5;"></a>&#x4E8B;&#x540E;&#x60F3;&#x6CD5;</h2><p>&#x5728;&#x6536;&#x7B14;&#x524D;&#x6211;&#x4EEC;&#x6765;&#x505A;&#x4E00;&#x4E2A;&#x5B9E;&#x9A8C;. &#x6839;&#x636E;PE&#x9009;&#x80A1;&#x53EF;&#x9760;&#x5417;?? &#x7B56;&#x7565;&#x5982;&#x4E0B;</p>
+<pre><code>Number of Stocks to buy : 10
+Minimum ROE: 10</code></pre><p>&#x6211;&#x4EEC;&#x5C31;&#x6765;&#x770B;&#x770B;, &#x5728;&#x76C8;&#x5229;&#x80FD;&#x529B;(ROE)&#x4E00;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x4E0B;, &#x9AD8;PE&#x548C;&#x4F4E;PE&#x7684;&#x80A1;&#x7968;&#x7684;&#x8868;&#x73B0;.</p>
+<p><strong>&#x9AD8;PE&#x7B56;&#x7565;</strong></p>
+<p><img src="/img/output_pe_min15_snapshot.png" alt="Strategy: Number of Stocks to buy: 10, minimum PE:15, minimum ROE:10"></p>
+<hr>
+<p><strong>&#x4F4E;PE&#x7B56;&#x7565;</strong></p>
+<p><img src="/img/output_pe_max15_snapshot.png" alt="Strategy: Number of Stocks to buy: 10, maximum PE:15, minimum ROE:10"></p>
+<p>&#x56DE;&#x6D4B;&#x7ED3;&#x679C;&#x4E5F;&#x4E0D;&#x7528;&#x591A;&#x8BF4;&#x4E86;, &#x4F4E;PE&#x7B56;&#x7565;&#x662F;<strong>&#x660E;&#x663E;</strong>&#x7684;&#x8DD1;&#x8D62;&#x9AD8;PE&#x7B56;&#x7565;. &#x53EF;&#x662F;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5927;&#x6982;&#x7684;&#x6982;&#x5FF5;&#x800C;&#x5DF2;, &#x4E0D;&#x662F;&#x6240;&#x6709;&#x9AD8;PE&#x7684;&#x80A1;&#x90FD;&#x4E0D;&#x4F1A;&#x6DA8;. (&#x5C31;&#x50CF;TOPGLOVE&#x4ECE;PE60&#x6DA8;&#x5230;PE100++). &#x6295;&#x8D44;&#x754C;&#x5927;&#x4F6C;Howard Marks&#x4E5F;&#x8BF4; &#x201C;An overpriced stock doesn&#x2019;t mean that it will drop tomorrow&#x201D;, &#x610F;&#x601D;&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x4F30;&#x7684;&#x80A1;&#x7968;&#x4E0D;&#x4EE3;&#x8868;&#x5B83;&#x660E;&#x5929;&#x5C31;&#x4F1A;&#x6389;. &#x80A1;&#x5E02;&#x91CC;&#x6CA1;&#x6709;&#x7EDD;&#x5BF9;, &#x53EF;&#x662F;&#x4ECE;&#x6570;&#x636E;&#x91CC;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x53EF;&#x4EE5;&#x5927;&#x6982;&#x7387;&#x8DD1;&#x8D62;&#x7684;&#x7B56;&#x7565;&#x7684;.</p>
+<h2 id="&#x4E0D;&#x8DB3;&#x4E4B;&#x5904;"><a href="#&#x4E0D;&#x8DB3;&#x4E4B;&#x5904;" class="headerlink" title="&#x4E0D;&#x8DB3;&#x4E4B;&#x5904;"></a>&#x4E0D;&#x8DB3;&#x4E4B;&#x5904;</h2><p>&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x7A0B;&#x5E8F;&#x4E5F;&#x4E0D;&#x662F;100%&#x5B8C;&#x7F8E;&#x7684;, &#x4E5F;&#x6709;&#x4E00;&#x4E0B;&#x4E0D;&#x8DB3;&#x7684;&#x5730;&#x65B9;</p>
+<ol>
+<li>&#x6CA1;&#x6709;&#x6280;&#x672F;&#x5206;&#x6790;&#x7684;&#x9009;&#x9879;, &#x53EF;&#x80FD;&#x4F60;&#x7684;&#x7B56;&#x7565;&#x662F;&#x8981;&#x7B49;MA, MACD&#x9EC4;&#x91D1;&#x4EA4;&#x53C9;&#x7684;, &#x53EF;&#x662F;&#x76EE;&#x524D;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x53EA;&#x80FD;&#x5206;&#x6790;&#x57FA;&#x672C;&#x9762;. (&#x5982;&#x679C;&#x53CD;&#x5E94;&#x597D;&#x7684;&#x8BDD;&#x53EF;&#x80FD;&#x4F1A;&#x52A0;&#x5165;&#x6280;&#x672F;&#x5206;&#x6790;&#x9009;&#x9879;, &#x9700;&#x8981;&#x65F6;&#x95F4;&#x548C;&#x7CBE;&#x529B;&#x6765;&#x5F00;&#x53D1;&#x54C8;&#x54C8;)</li>
+<li>&#x6CA1;&#x6709;&#x8003;&#x8651;&#x5230;&#x4EA4;&#x6613;&#x8D39;&#x7528;. &#x5982;&#x679C;&#x4F60;&#x7684;&#x672C;&#x94B1;&#x5C0F;&#x7684;&#x8BDD;, &#x4EA4;&#x6613;&#x8D39;&#x7528;&#x4F1A;&#x5360;&#x4F60;&#x672C;&#x91D1;&#x5F88;&#x5927;&#x7684;&#x6BD4;&#x4F8B;.</li>
+</ol>
+<p>&#x597D;&#x5427;&#x4ECA;&#x5929;&#x5C31;&#x5230;&#x8FD9;&#x91CC;&#x4E86;, &#x5982;&#x679C;&#x6709;&#x4EC0;&#x4E48;feedback&#x53EF;&#x4EE5;&#x5728;&#x4E0B;&#x9762;&#x7559;&#x8A00;(&#x4E0D;&#x7BA1;&#x662F;&#x597D;&#x662F;&#x574F;, &#x6709;feedback&#x624D;&#x80FD;&#x505A;&#x5F97;&#x66F4;&#x597D;). <strong>&#x4EE5;&#x4E0A;&#x6587;&#x7AE0;&#x53EA;&#x4F9B;&#x5B66;&#x4E60;&#x7528;&#x9014;&#x4E0D;&#x662F;&#x6295;&#x8D44;&#x5EFA;&#x8BAE;</strong></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/zh-cn/tags/Backtesting/">#Backtesting</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/zh-cn/tags/Stock-Picking/">#Stock Picking</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/zh-cn/first-md/">蜡烛图技术分析在马股有用吗? 胜率有多高?</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/zh-cn/Introduction-to-klsequant/';
+        this.page.identifier = 'zh-cn/Introduction-to-klsequant/';
+        
+        this.language = 'zh';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'bursaquant' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 靠PE选股有用吗??&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="LinkedIn" href="https://www.linkedin.com/in/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-linkedin"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="E-mail" href="mailto:thecqf97@gmail.com">
+                    
+                    <i class="far fa-envelope"></i>
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.zh-cn.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
