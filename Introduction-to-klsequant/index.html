@@ -25,19 +25,19 @@
 <meta property="og:site_name" content="&lt;&#x2F;&gt;klsequant | Solving the Market using Maths">
 <meta property="og:description" content="Whether it&amp;#x2019;s PE, ROE, DY there are tons of financial jargons and financial ratios out there. The value investors emphasize on buying cheap (low PE, PB), while growth investors focus on buying s">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/img/klsequant_snapshot.png">
-<meta property="og:image" content="http://yoursite.com/img/ui_snapshot.png">
-<meta property="og:image" content="http://yoursite.com/img/demo_input_snapshot.png">
-<meta property="og:image" content="http://yoursite.com/img/output_graph_snapshot.png">
-<meta property="og:image" content="http://yoursite.com/img/output_table_snapshot.png">
-<meta property="og:image" content="http://yoursite.com/img/output_pe_min15_snapshot.png">
-<meta property="og:image" content="http://yoursite.com/img/output_pe_max15_snapshot.png">
+<meta property="og:image" content="http://yoursite.com/img/klsequant_snapshot.PNG">
+<meta property="og:image" content="http://yoursite.com/img/ui_snapshot.PNG">
+<meta property="og:image" content="http://yoursite.com/img/demo_input_snapshot.PNG">
+<meta property="og:image" content="http://yoursite.com/img/output_graph_snapshot.PNG">
+<meta property="og:image" content="http://yoursite.com/img/output_table_snapshot.PNG">
+<meta property="og:image" content="http://yoursite.com/img/output_pe_min15_snapshot.PNG">
+<meta property="og:image" content="http://yoursite.com/img/output_pe_max15_snapshot.PNG">
 <meta property="article:published_time" content="2020-07-02T13:26:55.000Z">
-<meta property="article:modified_time" content="2020-07-15T15:01:07.496Z">
+<meta property="article:modified_time" content="2020-10-22T13:13:53.884Z">
 <meta property="article:tag" content="Backtesting">
 <meta property="article:tag" content="Stock Picking">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/img/klsequant_snapshot.png">
+<meta name="twitter:image" content="http://yoursite.com/img/klsequant_snapshot.PNG">
 
 
 
@@ -179,28 +179,28 @@
         <html><head></head><body><p>Whether it&#x2019;s PE, ROE, DY there are tons of financial jargons and financial ratios out there. The value investors emphasize on buying cheap (low PE, PB), while growth investors focus on buying stocks with high growth (high ROE etc). How do we know which ratio is the most useful to find out potentially profitable stocks? Let&#x2019;s find out.</p>
 <a id="more"></a>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>For today&#x2019;s topic, I am going to introduce a backtesting tool that I have developed myself during free time. <strong><a href="https://www.klsequant.com" target="_blank" rel="noopener">https://www.klsequant.com</a></strong></p>
-<p><img src="/img/klsequant_snapshot.png" alt="klsequant web app"></p>
+<p><img src="/img/klsequant_snapshot.PNG" alt="klsequant web app"></p>
 <p>So what&#x2019;s the <strong>main goal/function of this web app?</strong> Say that you have a stock picking strategy that you wanted to test out. For example, buy a stock when PE is below 10 while ROE is above 20. Then you can backtest your strategy, to see how well your stock picking strategy has performed over the last 10 years (The dataset is from 2010 to 2019).</p>
 <p>This is a web app based on Python Flask framework and this is a new challenge for me because I have only coded in Python but never in web environment. I coded the app and hosted in on <a href="https://www.pythonanywhere.com" target="_blank" rel="noopener">pythonanywhere</a>, definitely check them out if you are a Python guy.</p>
-<h2 id="Brief-explanation-of-the-user-interface"><a href="#Brief-explanation-of-the-user-interface" class="headerlink" title="Brief explanation of the user interface"></a>Brief explanation of the user interface</h2><p><img src="/img/ui_snapshot.png" alt="klsequant web app user interface"></p>
+<h2 id="Brief-explanation-of-the-user-interface"><a href="#Brief-explanation-of-the-user-interface" class="headerlink" title="Brief explanation of the user interface"></a>Brief explanation of the user interface</h2><p><img src="/img/ui_snapshot.PNG" alt="klsequant web app user interface"></p>
 <p>Let me have a basic introduction to the user interface. There is 14 inputs for you, the maximum number of shares field however must be filled, the other fields are fill solely based on your stock pick criteria.</p>
 <h2 id="Usage-demonstration"><a href="#Usage-demonstration" class="headerlink" title="Usage demonstration"></a>Usage demonstration</h2><p>For demonstration purpose, the strategy I am using are buy when (Maximum number of stocks to buy is 10, PE is below 10, ROE is above 15 and DY above 3). If a stock fulfills the criteria it will get chosen to backtest the performance. I am using monthly frequency here (which mean the frequency you change your position to buy new stocks as the criteria might change over time for a stock) but there are plenty of choices for frequency for you to experiment as well.</p>
-<p><img src="/img/demo_input_snapshot.png" alt="klsequant web app demo input"></p>
+<p><img src="/img/demo_input_snapshot.PNG" alt="klsequant web app demo input"></p>
 <p>Let&#x2019;s see how the performance goes. We gt a compounded annual growth rate (Cagr) of 36%. That is not bad at all! It is also shown that the strategy outperforms the KLSE index (the red line) as well. The program assumes that you start with capital of RM1,000.</p>
 <p>Here&#x2019;s some explanation of the output.</p>
-<p><img src="/img/output_graph_snapshot.png" alt="output graph"></p>
+<p><img src="/img/output_graph_snapshot.PNG" alt="output graph"></p>
 <p>The green line is the capital growth of your stock picking strategy. The red line corresponds to performance of KLSE index. We take the performance of KLSE index as benchmark so we know have we got a better return than simply buying KLSE ETF and hold.</p>
 <p>The maximum return the strategy achieved is 48.3%, with worst return of -13.81%. On average, each trade generates 2.59% of return. The compounded annual growth rate of the strategy is 36%. The strategy also outperforms KLSE index greatly, with RM1,000 invested, you will get RM16,000 in return whereas KLSE only provide RM1,131 in return.</p>
-<p><img src="/img/output_table_snapshot.png" alt="history of all stocks bought under the strategy"></p>
+<p><img src="/img/output_table_snapshot.PNG" alt="history of all stocks bought under the strategy"></p>
 <p>This table is the stocks that fulfilled the stock picking criteria you defined. It gives you a rough idea what stocks will be picked based on your strategy. Why is there only 3 stocks bought in some months? It is because during the month no other stocks fulfill the stock picking criteria so only a little stocks are bought. (**Can you notice that this strategy captures super long bullish stock like Vitrox?)</p>
 <h2 id="Afterthoughts"><a href="#Afterthoughts" class="headerlink" title="Afterthoughts"></a>Afterthoughts</h2><p>Let&#x2019;s have a little experiment before we call it a day. How about high PE stocks vs low PE stocks? The criteria is as follow:</p>
 <pre><code>Number of Stocks to buy : 10
 Minimum ROE: 10</code></pre><p>Let&#x2019;s see with the same ROE, how will PE change the profitability of a stock picking strategy?Here&#x2019;s the result</p>
 <p><strong>High PE strategy</strong></p>
-<p><img src="/img/output_pe_min15_snapshot.png" alt="Strategy: Number of Stocks to buy: 10, minimum PE:15, minimum ROE:10"></p>
+<p><img src="/img/output_pe_min15_snapshot.PNG" alt="Strategy: Number of Stocks to buy: 10, minimum PE:15, minimum ROE:10"></p>
 <hr>
 <p><strong>Low PE strategy</strong></p>
-<p><img src="/img/output_pe_max15_snapshot.png" alt="Strategy: Number of Stocks to buy: 10, maximum PE:15, minimum ROE:10"></p>
+<p><img src="/img/output_pe_max15_snapshot.PNG" alt="Strategy: Number of Stocks to buy: 10, maximum PE:15, minimum ROE:10"></p>
 <p>The results are pretty clear that low PE DO outperform high PE stocks over time. But this is a very generalized idea, as we can see that overpriced stocks CAN get more expensive also (Like how glove counters&#x2019; PE went from 60 to 100). Howard Marks has a saying &#x201C;An overpriced stock doesn&#x2019;t mean that it will drop tomorrow&#x201D;. But generally speaking, low PE stock does offer a better return.</p>
 <h2 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h2><p>There are limitations to this web app as well. I&#x2019;ll list several of them.</p>
 <p>First, there is no technical analysis picking criteria (maybe in future? If you guys loved it I will develop this feature)</p>
