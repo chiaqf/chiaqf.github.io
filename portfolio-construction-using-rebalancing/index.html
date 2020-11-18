@@ -2,13 +2,13 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Tag: Python - &lt;/&gt;klsequant | Solving the Market using Maths</title>
+<title>Portfolio Construction. Full Equity, Full Bond or 50/50? - &lt;/&gt;klsequant | Solving the Market using Maths</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
 
-<link href="/zh-cn/tags/Python/index.html" rel="alternate" hreflang="zh-CN" />
+<link href="/zh-cn/portfolio-construction-using-rebalancing/" rel="alternate" hreflang="zh-CN" />
     
 
 
@@ -18,12 +18,22 @@
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="&lt;&#x2F;&gt;klsequant | Solving the Market using Maths">
-<meta property="og:url" content="http://yoursite.com/tags/Python/index.html">
+    <meta name="description" content="How do you achieve capital growth while controlling your risk?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Portfolio Construction. Full Equity, Full Bond or 50&#x2F;50?">
+<meta property="og:url" content="http://yoursite.com/portfolio-construction-using-rebalancing/index.html">
 <meta property="og:site_name" content="&lt;&#x2F;&gt;klsequant | Solving the Market using Maths">
+<meta property="og:description" content="How do you achieve capital growth while controlling your risk?">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/img/risk-return.png">
+<meta property="og:image" content="http://yoursite.com/img/portfolio.png">
+<meta property="og:image" content="http://yoursite.com/img/portfolio_1000.png">
+<meta property="article:published_time" content="2020-11-16T09:42:23.000Z">
+<meta property="article:modified_time" content="2020-11-17T11:14:56.958Z">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Strategy">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/img/risk-return.png">
 
 
 
@@ -122,11 +132,11 @@
         <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
             <div class="dropdown-content">
             
-                <a href="/tags/Python/index.html" class="dropdown-item">
+                <a href="/portfolio-construction-using-rebalancing/" class="dropdown-item">
                     English
                 </a>
             
-                <a href="/zh-cn/tags/Python/index.html" class="dropdown-item">
+                <a href="/zh-cn/portfolio-construction-using-rebalancing/" class="dropdown-item">
                     简体中文
                 </a>
             
@@ -139,20 +149,12 @@
     </div>
 </nav>
 
-    <section class="section section-heading">
+    <section class="section">
     <div class="container">
-        <div class="content">
-            <h5>#Python</h5>
-        </div>
-    </div>
-</section>
-<section class="section">
-    <div class="container">
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
+    <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/portfolio-construction-using-rebalancing/" itemprop="url">Portfolio Construction. Full Equity, Full Bond or 50/50?</a>
+            Portfolio Construction. Full Equity, Full Bond or 50/50?
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
@@ -170,63 +172,142 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>How do you achieve capital growth while controlling your risk?</p></body></html>
-        <p class="article-more-link">
-            <a href="/portfolio-construction-using-rebalancing/#more">Read More</a>
-        </p>
+        <html><head></head><body><p>How do you achieve capital growth while controlling your risk?</p>
+<a id="more"></a>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>People often equates return and risk, giving statements like &#x201C;high risk high return&#x201D;. <strong>If high risk does secure you high return, is the investment considered high risk anymore?</strong></p>
+<p>I find Howard Marks return vs risk graph a nice way to visualize risk.</p>
+<p>According to him, the higher the risk, the more variability your return becomes.</p>
+<p><img src="/img/risk-return.png" alt="Return vs risk visualized"></p>
+<p>Different asset classes have their inherent risk.</p>
+<p><strong>Equity</strong> asset often relates to people as higher risk, because sometimes it delivers higher return and sometimes lower return compared to other asset classes, with ranges in (-20 to 50% We are talking about overall equity market here).<br><strong>A lot of factors can play with an equity&#x2019;s risk, market condition, company earnings, new competitor and etc.</strong></p>
+<p><strong>Bond</strong> asset is often considered as low risk asset, because of the return of the asset is fixed (sometimes also called fixed income asset), it has lesser variability in their returns (3 to 8%).<br><strong>Bond on the other hand, the main risk is the company going bankrupt, defaulting on the bond you are holding.</strong></p>
+<h2 id="John-Bogle&#x2019;s-strategy"><a href="#John-Bogle&#x2019;s-strategy" class="headerlink" title="John Bogle&#x2019;s strategy"></a>John Bogle&#x2019;s strategy</h2><p>John Bogle the founder of The Vanguard Group, an american fund management giant.</p>
+<p>His investment strategy is to allocate equity/bond with ratio of 50/50. Every year, you will need to rebalance your portfolio.</p>
+<p>For example</p>
+<table>
+<thead>
+<tr>
+<th>Stock</th>
+<th>Bond</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5500</td>
+<td>5100</td>
+</tr>
+</tbody></table>
+<p>you will need to take 400 from equity asset to bond asset, make the ratio 50/50 again.</p>
+<p>The rationale behind this is to <strong>&#x201C;balance&#x201D;</strong> the portfolio, a higher equity price might mean overvalued equity, hence reducing your position on <strong>overvalued</strong> asset.<br>Vice versa, when the equity price is low, you shift money from bond to equity, to buy more of the <strong>undervalued</strong> asset.</p>
+<h2 id="How-about-Modern-Portfolio-Theory"><a href="#How-about-Modern-Portfolio-Theory" class="headerlink" title="How about Modern Portfolio Theory?"></a>How about Modern Portfolio Theory?</h2><p>The Nobel prize winner Markowitz doesn&#x2019;t even use the strategy himself,</p>
+<blockquote>
+<p>&#x201C;I visualized my grief if the stock market went way up and I wasn&#x2019;t in it &#x2014; or if it went way down and I was completely in it. So I split my contributions 50/50 between stocks and bonds.&#x201D;</p>
+</blockquote>
+<p>So it seems like Markowitz himself is using a 50/50 portfolio instead of the Modern Portfolio Theory that won him a Nobel Prize.</p>
+<p><a href="https://www.mymoneyblog.com/harry-markowitz-personal-investment-portfolio.html" target="_blank" rel="noopener">https://www.mymoneyblog.com/harry-markowitz-personal-investment-portfolio.html</a></p>
+<h2 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h2><p>The data I am using are funds from a local unit trust giant company P.</p>
+<p>The equity funds I used are <strong>Global Equity Fund</strong>, <strong>East-Asia Equity Fund</strong>, <strong>Malaysia Index Fund</strong>. They well represent the whole equity market as a whole.<br>The bond fund I used are <strong>Enhanced Bond Fund</strong>.</p>
+<p>The data used are from 2006 to 2020, to visualize the long term returns.</p>
+<p>I am using Python for the calculation (because it is vastly easier than MS Excel), if you are interested please drop me an email.</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>Full Equity</th>
+<th>Full Bond</th>
+<th>50/50 Equity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Return</td>
+<td>270%</td>
+<td>105%</td>
+<td>244%</td>
+</tr>
+<tr>
+<td>Asset Value in 2020</td>
+<td>27142</td>
+<td>18664</td>
+<td>24482</td>
+</tr>
+<tr>
+<td>Lowest point</td>
+<td>9971</td>
+<td>10532</td>
+<td>11191</td>
+</tr>
+</tbody></table>
+<p>Some might point out that volatility isn&#x2019;t a bad thing, but I think we can agree that volatility is not for the fainted heart.</p>
+<p>No all of us can sleep well when our portfolio is down 20%, with a nice spiced combo, we can sleep well while not sacrificing a big chunk of your return.</p>
+<p><img src="/img/portfolio.png" alt="Performance of portfolio"></p>
+<h2 id="What-if-you-added-more-every-year"><a href="#What-if-you-added-more-every-year" class="headerlink" title="What if you added more every year?"></a>What if you added more every year?</h2><p>What if we added RM1000 every year (A rather small amount)?<br>As expected, the portfolio will grow a lot faster.</p>
+<p><img src="/img/portfolio_1000.png" alt="Performance of portfolio"></p>
+<h2 id="Key-Takeaways"><a href="#Key-Takeaways" class="headerlink" title="Key Takeaways"></a>Key Takeaways</h2><ul>
+<li><strong>Nice risk/reward ratio</strong>. Reduced volatility while preserving returns.</li>
+<li><strong>Diversification don&#x2019;t necessary take away a lot of your return</strong>. The 50/50 combo is only a 10% (RM2600 difference) worse than full equity combo, with lesser volatility.</li>
+<li>We cannot rebalance our portfolio too often because it might incur charges.</li>
+</ul>
+<p>The data I used above is from a local unit trust giant company P. If you want to learn more please <a href="https://m.me/klsequant" target="_blank" rel="noopener">PM on Facebook Messenger</a> or <strong>Email to <a href="mailto:klsequant@gmail.com">klsequant@gmail.com</a> for more info</strong></p>
+</body></html>
     
     </div>
     
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python/">#Python</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Strategy/">#Strategy</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/RM300-a-year-for-10-years/">RM300 a year for 10 years?</a>
+            
+        </span>
+    </div>
     
 </article>
 
 
 
 
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
     
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/portfolio-construction-using-rebalancing/';
+        this.page.identifier = 'portfolio-construction-using-rebalancing/';
         
-            <a href="/first-md/" itemprop="url">Is candlestick pattern effective in Bursa Malaysia?</a>
+        this.language = 'en';
         
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            <time datetime="2020-06-06T05:06:16.000Z" itemprop="datePublished">Jun 6 2020</time>
-        </span>
-        
-        
-        <span class="column is-narrow">
-            
-            
-            3 minutes read (About 479 words)
-        </span>
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>If you have been investing or trading stocks you must have come across about Japanese Candlestick Pattern.<br>How effective are them? Can we use them reliably in investing or trading? Let&#x2019;s find out.</p></body></html>
-        <p class="article-more-link">
-            <a href="/first-md/#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'bursaquant' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
 
-
-
-
+<div id="disqus_thread">
     
-    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
     </div>
 </section>
     <footer class="footer">
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2020 &lt;/&gt;klsequant | Solving the Market using Maths&nbsp;
+                &copy; 2020 Portfolio Construction. Full Equity, Full Bond or 50/50?&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
