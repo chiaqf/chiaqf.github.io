@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>A Monte Carlo Simulation of your Retirement Planning 💵💵 - &lt;/&gt;klsequant | Solving the Market using Maths</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<link href="/zh-cn/montecarlosimulation/" rel="alternate" hreflang="zh-CN" />
+    
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="Monte Carlo Simulation of your Retirement Planning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Monte Carlo Simulation of your Retirement Planning 💵💵">
+<meta property="og:url" content="http://yoursite.com/montecarlosimulation/index.html">
+<meta property="og:site_name" content="&lt;&#x2F;&gt;klsequant | Solving the Market using Maths">
+<meta property="og:description" content="Monte Carlo Simulation of your Retirement Planning">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/img/stdev.png">
+<meta property="og:image" content="http://yoursite.com/img/montecarlo_distribution1.png">
+<meta property="og:image" content="http://yoursite.com/img/montecarlo_distribution2.png">
+<meta property="og:image" content="http://yoursite.com/img/meme.jpg">
+<meta property="og:image" content="http://yoursite.com/img/montecarlo_distribution3.png">
+<meta property="article:published_time" content="2021-01-23T10:42:01.000Z">
+<meta property="article:modified_time" content="2021-01-23T12:06:32.264Z">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Monte Carlo">
+<meta property="article:tag" content="Investment">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/img/stdev.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171670897-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171670897-1');
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            
+<div class="column is-narrow has-text-centered">
+    <div class="dropdown is-up is-right is-hoverable" style="margin-top: -0.2em;">
+        <div class="dropdown-trigger">
+            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu7">
+                <span class="icon">
+                    <i class="fas fa-globe"></i>
+                </span>
+                <span>English</span>
+                <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </button>
+        </div>
+        <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
+            <div class="dropdown-content">
+            
+                <a href="/montecarlosimulation/" class="dropdown-item">
+                    English
+                </a>
+            
+                <a href="/zh-cn/montecarlosimulation/" class="dropdown-item">
+                    简体中文
+                </a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            A Monte Carlo Simulation of your Retirement Planning 💵💵
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2021-01-23T10:42:01.000Z" itemprop="datePublished">Jan 23 2021</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 minutes read (About 956 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>Monte Carlo Simulation of your Retirement Planning</p>
+<a id="more"></a>
+
+<h2 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h2><p>There are countless people who planned their retirement by saving a monthly sum and investing it into the stock market &#x1F4C8;&#x1F4C8;&#x1F4C8;.</p>
+<p>There are also plenty of investment gurus advocating this investment strategy that is known as &#x201C;Passive Investment&#x201D;, which means you do not try to time the market, but rather you invest periodically no matter the current level of market.</p>
+<p>I prepare my future nest egg &#x1F95A;&#x1F95A; this way too, as an engineer who won&#x2019;t be convinced without seeing the data, I am going to do some research on the practicality of this approach by using Monte Carlo Simulation.</p>
+<h2 id="Historical-Returns-of-Dow-Jones-Index"><a href="#Historical-Returns-of-Dow-Jones-Index" class="headerlink" title="Historical Returns of Dow Jones Index"></a>Historical Returns of Dow Jones Index</h2><p>I chose Dow Jones Index as many people (including me), invests in the &#x1F1FA;&#x1F1F8; US market, where Dow Jones Index is the primary index of the US Market.</p>
+<p>Here is some analysis on the historical returns on Dow Jones Index.</p>
+<hr>
+<h3 id="Reading-Data-using-Pandas-module-&#x1F43C;&#x1F43C;"><a href="#Reading-Data-using-Pandas-module-&#x1F43C;&#x1F43C;" class="headerlink" title="Reading Data using Pandas module &#x1F43C;&#x1F43C;"></a>Reading Data using Pandas module &#x1F43C;&#x1F43C;</h3><p>I am using data from 2021 to 1915.</p>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> norm</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line">plt.style.use(<span class="hljs-string">&apos;seaborn&apos;</span>)</span><br><span class="line"></span><br><span class="line">DJI = pd.read_csv(<span class="hljs-string">&apos;DJI.csv&apos;</span>)</span><br><span class="line">DJI.head()</span><br></pre></td></tr></tbody></table></figure><p></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj. Close</th>
+      <th>Return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021</td>
+      <td>30,909.43</td>
+      <td>30,223.89</td>
+      <td>31,188.38</td>
+      <td>30,223.89</td>
+      <td>31,176.01</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020</td>
+      <td>26,890.67</td>
+      <td>28,868.80</td>
+      <td>30,606.48</td>
+      <td>18,591.93</td>
+      <td>30,606.48</td>
+      <td>0.07</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019</td>
+      <td>26,379.55</td>
+      <td>23,346.24</td>
+      <td>28,645.26</td>
+      <td>22,686.22</td>
+      <td>28,538.44</td>
+      <td>0.22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2018</td>
+      <td>25,046.86</td>
+      <td>24,824.01</td>
+      <td>26,828.39</td>
+      <td>21,792.20</td>
+      <td>23,327.46</td>
+      <td>-0.06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2017</td>
+      <td>21,750.20</td>
+      <td>19,881.76</td>
+      <td>24,837.51</td>
+      <td>19,732.40</td>
+      <td>24,719.22</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="Some-Intuition-into-the-Stats-&#x1F9EE;"><a href="#Some-Intuition-into-the-Stats-&#x1F9EE;" class="headerlink" title="Some Intuition into the Stats &#x1F9EE;"></a>Some Intuition into the Stats &#x1F9EE;</h3><p>For a normal distribution, 95% of all occurence happens within 2 standard deviations away from the mean.</p>
+<p>Although we are not dealing with perfect normal distribution, but the distribution gives roughly the same pattern. Note that this does not include the possibility of a <strong>Black Swan</strong> (super rare, unexpected, high consequence events).</p>
+<p><img src="/img/stdev.png" alt></p>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mean = DJI[<span class="hljs-string">&apos;Return&apos;</span>].mean()</span><br><span class="line">std = DJI[<span class="hljs-string">&apos;Return&apos;</span>].std()</span><br><span class="line">lowerbound = mean - <span class="hljs-number">2</span>*std</span><br><span class="line">upperbound = mean + <span class="hljs-number">2</span>*std</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">&quot;Mean return        : {:.2f}&quot;</span>.format(mean))</span><br><span class="line">print(<span class="hljs-string">&quot;Standard Deviation : {:.2f}&quot;</span>.format(std))</span><br></pre></td></tr></tbody></table></figure><p></p>
+<pre><code>Mean return        : 0.08
+Standard Deviation : 0.21</code></pre><h3 id="Distribution-of-Dow-Jones-Index-Yearly-Returns"><a href="#Distribution-of-Dow-Jones-Index-Yearly-Returns" class="headerlink" title="Distribution of Dow Jones Index Yearly Returns"></a>Distribution of Dow Jones Index Yearly Returns</h3><p>We get the mean and standard deviation on the returns. But we can visualize it better on a histogram.</p>
+<p>The distribution of yearly historical returns of Dow Jones Index are similar to a normal distribution, with peak at middle and tails at both side.</p>
+<p>The mean return and standard deviation are calculated.<br>Note how I plotted 2 straight lines of 2 standard deviations away from mean.</p>
+<p>Using the below plot we can say that <strong>95% of all returns of Dow Jones are between -33% and +49%.</strong></p>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">fig, ax1 = plt.subplots()</span><br><span class="line">ax2 = ax1.twinx()</span><br><span class="line"></span><br><span class="line">plt.axvline(x = upperbound, color=<span class="hljs-string">&apos;g&apos;</span>, linestyle=<span class="hljs-string">&apos;-&apos;</span>, alpha=<span class="hljs-number">0.5</span>, label = <span class="hljs-string">&apos;mean&apos;</span>)</span><br><span class="line">plt.axvline(x = lowerbound, color=<span class="hljs-string">&apos;g&apos;</span>, linestyle=<span class="hljs-string">&apos;-&apos;</span>, alpha=<span class="hljs-number">0.5</span>, label = <span class="hljs-string">&apos;mean&apos;</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#---------Histogram------------------------------------------------------------------------------------</span></span><br><span class="line">title = str(<span class="hljs-string">&apos;95% of Returns are in {:.2f}&apos;</span>.format(<span class="hljs-number">1</span> + lowerbound) + <span class="hljs-string">&apos; and {:.2f}&apos;</span>.format(<span class="hljs-number">1</span> + upperbound))</span><br><span class="line">DJI[<span class="hljs-string">&apos;Return&apos;</span>].hist(bins=<span class="hljs-number">15</span>, ax = ax1)</span><br><span class="line">ax1.set_ylabel(<span class="hljs-string">&apos;Probability&apos;</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#---------Fitting the histogram with curve-------------------------------------------------------------</span></span><br><span class="line">mu, std = norm.fit(DJI[<span class="hljs-string">&apos;Return&apos;</span>])</span><br><span class="line">xmin, xmax = plt.xlim()</span><br><span class="line">x = np.linspace(xmin, xmax, <span class="hljs-number">100</span>)</span><br><span class="line">p = norm.pdf(x, mu, std)</span><br><span class="line">ax2.plot(x, p, <span class="hljs-string">&apos;b&apos;</span>, linewidth=<span class="hljs-number">2</span>, alpha = <span class="hljs-number">0.5</span>)</span><br><span class="line">ax2.grid(<span class="hljs-literal">False</span>)</span><br><span class="line">ax2.set_ylabel(<span class="hljs-string">&apos;Distribution&apos;</span>, color=<span class="hljs-string">&apos;b&apos;</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#--------Show the plot</span></span><br><span class="line">plt.title(title)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="/img/montecarlo_distribution1.png" alt></p>
+<h3 id="Can-YOU-invest-your-way-to-a-Millionaire-&#x1F4B0;&#x1F4B0;&#x1F4B0;"><a href="#Can-YOU-invest-your-way-to-a-Millionaire-&#x1F4B0;&#x1F4B0;&#x1F4B0;" class="headerlink" title="Can YOU invest your way to a Millionaire? &#x1F4B0;&#x1F4B0;&#x1F4B0;"></a>Can <em>YOU</em> invest your way to a Millionaire? &#x1F4B0;&#x1F4B0;&#x1F4B0;</h3><p>Let&#x2019;s assume an individual who invests RM5000 as initial investment and for every month he invests RM400 more into his portfolio.</p>
+<p>Using this plan he will end up with <strong>RM168,200</strong></p>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#-----Constants-----------------------</span></span><br><span class="line">INITIAL_INVESTMENT = <span class="hljs-number">5000</span></span><br><span class="line">MONTHLY_TOPUP = <span class="hljs-number">400</span></span><br><span class="line">YEARLY = MONTHLY_TOPUP * <span class="hljs-number">12</span></span><br><span class="line"><span class="hljs-comment"># ------------------------------------</span></span><br><span class="line"></span><br><span class="line">saving = [INITIAL_INVESTMENT]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">35</span>):</span><br><span class="line">    saving.append((saving[i - <span class="hljs-number">1</span>]) + YEARLY)</span><br><span class="line"></span><br><span class="line">capital = pd.DataFrame(saving, columns=[<span class="hljs-string">&apos;Saving&apos;</span>])</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#------Plotting the savings growth------</span></span><br><span class="line">capital.plot(y=<span class="hljs-string">&apos;Saving&apos;</span>, color=<span class="hljs-string">&apos;limegreen&apos;</span>, alpha = <span class="hljs-number">1</span>)</span><br><span class="line">print(<span class="hljs-string">&apos;Final value : {:.2f}&apos;</span>.format(capital[<span class="hljs-string">&apos;Saving&apos;</span>].iloc[ <span class="hljs-number">-1</span>]))</span><br></pre></td></tr></tbody></table></figure><p></p>
+<pre><code>Final value : 168200.00</code></pre><p><img src="/img/montecarlo_distribution2.png" alt></p>
+<h3 id="Monte-Carlo-Simulation"><a href="#Monte-Carlo-Simulation" class="headerlink" title="Monte Carlo Simulation"></a>Monte Carlo Simulation</h3><p><strong>RM168,200</strong> might be little after 30 plus years, how about investing along the way?</p>
+<p>Stock market returns are uncertain, but prior analysis shown that we can expect 95% of the return to be between -33% and +49%.</p>
+<p>I am going to use Monte Carlo simulation to simulate 50 different scenarios,<br>where the returns are generated randomly within -33% and +49%.</p>
+<p>It&#x2019;s like Dr. Strange seeing 50 possibilites of the saving journey.</p>
+<p><img src="/img/meme.jpg" alt></p>
+<p>At the end, I will get the median of all the scenarios and use it as reference.</p>
+<p>Why median? You might ask.</p>
+<p>Mean is too sensitive to overly big values, so I used median to get a realistic view.</p>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> randrange</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#-----Using upperbound and lowerbound of historical returns-------</span></span><br><span class="line">RAND_TOP = <span class="hljs-number">149</span></span><br><span class="line">RAND_BOT = <span class="hljs-number">68</span></span><br><span class="line">YEAR = <span class="hljs-number">34</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#------Generate 50 simulations------------------------------------</span></span><br><span class="line"><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">50</span>):</span><br><span class="line">    capital[str(<span class="hljs-string">&apos;Capital&apos;</span> + str(k))] = capital[<span class="hljs-string">&apos;Saving&apos;</span>]</span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(capital)):</span><br><span class="line">        capital.loc[i, str(<span class="hljs-string">&apos;Capital&apos;</span> + str(k))] = (capital.loc[i - <span class="hljs-number">1</span>, str(<span class="hljs-string">&apos;Capital&apos;</span> + str(k))] + YEARLY) * float(</span><br><span class="line">            randrange(RAND_BOT, RAND_TOP) / <span class="hljs-number">100</span>)</span><br><span class="line"></span><br><span class="line">capital[<span class="hljs-string">&apos;Mean&apos;</span>] = capital.median(axis=<span class="hljs-number">1</span>)</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">6</span>))</span><br><span class="line">fig.suptitle((<span class="hljs-string">&apos;Average Return after &apos;</span> + str(YEAR) + <span class="hljs-string">&apos; Years is %.2f&apos;</span> % capital[<span class="hljs-string">&apos;Mean&apos;</span>][capital.index[YEAR]]))</span><br><span class="line">ax = fig.add_subplot(<span class="hljs-number">121</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="hljs-number">122</span>)</span><br><span class="line"></span><br><span class="line">capital.plot(legend=<span class="hljs-literal">None</span>,alpha=<span class="hljs-number">0.3</span>, title = <span class="hljs-string">&apos;Monte Carlo Simulations&apos;</span>, xlabel = <span class="hljs-string">&apos;Years&apos;</span>, ylabel = <span class="hljs-string">&apos;RM&apos;</span>, ax = ax)</span><br><span class="line">capital.iloc[<span class="hljs-number">-1</span>].hist(bins=<span class="hljs-number">20</span>, orientation=<span class="hljs-string">&quot;horizontal&quot;</span>, color=<span class="hljs-string">&quot;pink&quot;</span>, alpha=<span class="hljs-number">0.5</span>,ax = ax)</span><br><span class="line"></span><br><span class="line">capital.plot(y=<span class="hljs-string">&apos;Saving&apos;</span>, color = <span class="hljs-string">&apos;tomato&apos;</span>, alpha = <span class="hljs-number">1</span>, label=<span class="hljs-string">&quot;Savings&quot;</span>, xlabel = <span class="hljs-string">&apos;Years&apos;</span>, ylabel = <span class="hljs-string">&apos;RM&apos;</span>, title = <span class="hljs-string">&apos;Median of simulations&apos;</span>, ax = ax2)</span><br><span class="line">capital.plot(y=<span class="hljs-string">&apos;Mean&apos;</span>, color=<span class="hljs-string">&apos;limegreen&apos;</span>, alpha = <span class="hljs-number">1</span>, ax = ax2)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="/img/montecarlo_distribution3.png" alt></p>
+<h3 id="Key-Takeaways-&#x26A1;&#x26A1;"><a href="#Key-Takeaways-&#x26A1;&#x26A1;" class="headerlink" title="Key Takeaways &#x26A1;&#x26A1;"></a>Key Takeaways &#x26A1;&#x26A1;</h3><p>Every time you run this notebook the outcome will be different (It&#x2019;s a simulation!)</p>
+<p>Maybe 2 in 50 lifetimes you will be fortunate enough to have a superbull market that can make you a millionaire using this plan.</p>
+<p>But I observed that the final value converges toward <strong>RM500,000.</strong></p>
+<p>If you wanted to be a millionaire by the time you retire, you might need to save more. (Or get more luck)</p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python/">#Python</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Monte-Carlo/">#Monte Carlo</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Investment/">#Investment</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/portfolio-construction-using-rebalancing/">Portfolio Construction. Full Equity, Full Bond or 50/50?</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/montecarlosimulation/';
+        this.page.identifier = 'montecarlosimulation/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'bursaquant' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 A Monte Carlo Simulation of your Retirement Planning 💵💵&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="LinkedIn" href="https://www.linkedin.com/in/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-linkedin"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="E-mail" href="mailto:thecqf97@gmail.com">
+                    
+                    <i class="far fa-envelope"></i>
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
