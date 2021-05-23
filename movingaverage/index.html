@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>How Effective is Moving Average Strategy in KLSE? - &lt;/&gt;klsequant | Solving the Market using Maths</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<link href="/zh-cn/movingaverage/" rel="alternate" hreflang="zh-CN" />
+    
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="How Effective is Moving Average Strategy in KLSE?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Effective is Moving Average Strategy in KLSE?">
+<meta property="og:url" content="https://blog.klsequant.com/movingaverage/index.html">
+<meta property="og:site_name" content="&lt;&#x2F;&gt;klsequant | Solving the Market using Maths">
+<meta property="og:description" content="How Effective is Moving Average Strategy in KLSE?">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.klsequant.com/img/movingaverage.png">
+<meta property="article:published_time" content="2021-05-23T08:33:32.000Z">
+<meta property="article:modified_time" content="2021-05-23T08:39:20.965Z">
+<meta property="article:tag" content="Strategy">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.klsequant.com/img/movingaverage.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171670897-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171670897-1');
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            
+<div class="column is-narrow has-text-centered">
+    <div class="dropdown is-up is-right is-hoverable" style="margin-top: -0.2em;">
+        <div class="dropdown-trigger">
+            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu7">
+                <span class="icon">
+                    <i class="fas fa-globe"></i>
+                </span>
+                <span>English</span>
+                <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </button>
+        </div>
+        <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
+            <div class="dropdown-content">
+            
+                <a href="/movingaverage/" class="dropdown-item">
+                    English
+                </a>
+            
+                <a href="/zh-cn/movingaverage/" class="dropdown-item">
+                    简体中文
+                </a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            How Effective is Moving Average Strategy in KLSE?
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2021-05-23T08:33:32.000Z" itemprop="datePublished">May 23 2021</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 minutes read (About 656 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>How Effective is Moving Average Strategy in KLSE?</p>
+<a id="more"></a>
+
+<h3 id="Moving-Average-Strategy"><a href="#Moving-Average-Strategy" class="headerlink" title="Moving Average Strategy"></a>Moving Average Strategy</h3><p>Moving average strategy is a common strategy used by traders</p>
+<p>Unlike some of the more exotic indicators,<br><br>moving average readily available in many charting software or website such as klsescreener or tradingview</p>
+<p>One common usage of moving average is that,<br></p>
+<p>when the &#x201C;fast&#x201D; moving average goes above the &#x201C;slow&#x201D; moving average,<br><br>we buy in,<br><br>when the &#x201C;fast&#x201D; moving average goes below the &#x201C;fast&#x201D; moving average,<br><br>we sell.</p>
+<p>So in this article I will test the performance of this strategy on KLSE index.<br><br>Though we can&#x2019;t directly buy the KLSE index,<br><br>we can achieve similar by buying futures or warrants that tracks the KLSE index.</p>
+<h3 id="Reading-data"><a href="#Reading-data" class="headerlink" title="Reading data"></a>Reading data</h3><p>I downloaded historical data of KLSE from Yahoo Finance in csv form.<br></p>
+<p>We need to read it into memory to perform backtesting.</p>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">KLSE = pd.read_csv(<span class="hljs-string">&apos;KLSE.csv&apos;</span>)</span><br><span class="line">KLSE = KLSE.replace(<span class="hljs-string">&apos;,&apos;</span>,<span class="hljs-string">&apos;&apos;</span>, regex=<span class="hljs-literal">True</span>)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;Open&apos;</span>] = KLSE[<span class="hljs-string">&apos;Open&apos;</span>].astype(float)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;Close&apos;</span>] = KLSE[<span class="hljs-string">&apos;Close&apos;</span>].astype(float)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;Change&apos;</span>] = (KLSE[<span class="hljs-string">&apos;Close&apos;</span>] - KLSE[<span class="hljs-string">&apos;Close&apos;</span>].shift(<span class="hljs-number">1</span>))/KLSE[<span class="hljs-string">&apos;Open&apos;</span>] + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">KLSE.head()</span><br></pre></td></tr></tbody></table></figure><p></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4-Jan-10</td>
+      <td>1272.31</td>
+      <td>1275.75</td>
+      <td>1272.25</td>
+      <td>1275.75</td>
+      <td>1275.75</td>
+      <td>56508200</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5-Jan-10</td>
+      <td>1278.26</td>
+      <td>1290.55</td>
+      <td>1278.26</td>
+      <td>1288.24</td>
+      <td>1288.24</td>
+      <td>136646600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6-Jan-10</td>
+      <td>1288.86</td>
+      <td>1296.44</td>
+      <td>1288.02</td>
+      <td>1293.17</td>
+      <td>1293.17</td>
+      <td>117740300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7-Jan-10</td>
+      <td>1293.69</td>
+      <td>1299.70</td>
+      <td>1290.36</td>
+      <td>1291.42</td>
+      <td>1291.42</td>
+      <td>115024400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8-Jan-10</td>
+      <td>1294.93</td>
+      <td>1295.51</td>
+      <td>1290.86</td>
+      <td>1292.98</td>
+      <td>1292.98</td>
+      <td>74587200</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>We are using very simple moving average strategy,</p>
+<p>the rules are:</p>
+<ol>
+<li>when the &#x201C;fast&#x201D; moving average goes above the &#x201C;slow&#x201D; moving average, we buy in.</li>
+<li>when the &#x201C;fast&#x201D; moving average goes below the &#x201C;fast&#x201D; moving average, we sell.</li>
+<li>No trading cost.</li>
+</ol>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">simulate</span><span class="hljs-params">(df,fast,slow)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">import</span> talib</span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;fast&apos;</span>] = talib.SMA(df[<span class="hljs-string">&apos;Close&apos;</span>],fast)</span><br><span class="line">    df[<span class="hljs-string">&apos;slow&apos;</span>] = talib.SMA(df[<span class="hljs-string">&apos;Close&apos;</span>],slow)</span><br><span class="line">    </span><br><span class="line">    df.dropna(inplace = <span class="hljs-literal">True</span>)</span><br><span class="line"></span><br><span class="line">    gold_cross = df[df[<span class="hljs-string">&apos;fast&apos;</span>] &gt; df[<span class="hljs-string">&apos;slow&apos;</span>]].index</span><br><span class="line">    df.loc[gold_cross,<span class="hljs-string">&apos;Cross&apos;</span>] = <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    gold_cross = df[df[<span class="hljs-string">&apos;fast&apos;</span>] &lt; df[<span class="hljs-string">&apos;slow&apos;</span>]].index</span><br><span class="line">    df.loc[gold_cross,<span class="hljs-string">&apos;Cross&apos;</span>] = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;Buy&apos;</span>] = df[<span class="hljs-string">&apos;Cross&apos;</span>].diff()</span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;Return&apos;</span>] = df[<span class="hljs-string">&apos;Cross&apos;</span>]*df[<span class="hljs-string">&apos;Change&apos;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">norm</span><span class="hljs-params">(x)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> x == <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> x</span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;Return&apos;</span>] = df[<span class="hljs-string">&apos;Return&apos;</span>].apply(<span class="hljs-keyword">lambda</span> x: norm(x))</span><br><span class="line">    df[<span class="hljs-string">&apos;Nav&apos;</span>] = (df[<span class="hljs-string">&apos;Return&apos;</span>]).cumprod()</span><br><span class="line"></span><br><span class="line">    price_in = df.loc[df[<span class="hljs-string">&apos;Buy&apos;</span>] == <span class="hljs-number">1</span>,<span class="hljs-string">&apos;Close&apos;</span>].values</span><br><span class="line">    price_out = df.loc[df[<span class="hljs-string">&apos;Buy&apos;</span>] == <span class="hljs-number">-1</span>,<span class="hljs-string">&apos;Close&apos;</span>].values</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># divide by 252 because generally a year has 252 trading days</span></span><br><span class="line">    num_periods = df.shape[<span class="hljs-number">0</span>]/<span class="hljs-number">252</span></span><br><span class="line">    rety = ((df[<span class="hljs-string">&apos;Nav&apos;</span>].iloc[<span class="hljs-number">-1</span>] / df[<span class="hljs-string">&apos;Nav&apos;</span>].iloc[<span class="hljs-number">0</span>]) ** (<span class="hljs-number">1</span> / (num_periods - <span class="hljs-number">1</span>)) - <span class="hljs-number">1</span>)*<span class="hljs-number">100.0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> len(price_out) &gt; len(price_in):</span><br><span class="line">        price_out = price_out[:len(price_in)]</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">if</span> len(price_in) &gt; len(price_out):</span><br><span class="line">        price_in = price_in[:len(price_out)]</span><br><span class="line">        </span><br><span class="line">    VictoryRatio = ((price_out - price_in)&gt;<span class="hljs-number">0</span>).mean()*<span class="hljs-number">100.0</span></span><br><span class="line">    DD = <span class="hljs-number">1</span> - df[<span class="hljs-string">&apos;Nav&apos;</span>]/df[<span class="hljs-string">&apos;Nav&apos;</span>].cummax()</span><br><span class="line">    MDD = max(DD)*<span class="hljs-number">100.0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> df, round(rety, <span class="hljs-number">2</span>), round(VictoryRatio, <span class="hljs-number">2</span>), round(MDD,<span class="hljs-number">2</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="Strategy-Performance"><a href="#Strategy-Performance" class="headerlink" title="Strategy Performance"></a>Strategy Performance</h3><p>We are backtesting 3 pairs of moving average</p>
+<ol>
+<li>10 and 20 (Short term trade)</li>
+<li>20 and 50 (Medium term trade)</li>
+<li>50 and 200 (Long term trade)</li>
+</ol>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">MA1020,cagr1020,vr1020,mdd1020 = simulate(KLSE.copy(),<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)</span><br><span class="line">MA2050,cagr2050,vr2050,mdd2050 = simulate(KLSE.copy(),<span class="hljs-number">20</span>,<span class="hljs-number">50</span>)</span><br><span class="line">MA50200,cagr50200,vr50200,mdd50200 = simulate(KLSE.copy(),<span class="hljs-number">50</span>,<span class="hljs-number">200</span>)</span><br><span class="line"></span><br><span class="line">KLSE[<span class="hljs-string">&apos;KLSE&apos;</span>] = (KLSE[<span class="hljs-string">&apos;Change&apos;</span>]).cumprod()</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line">plt.style.use(<span class="hljs-string">&apos;seaborn&apos;</span>)</span><br><span class="line"></span><br><span class="line">ax = MA1020[<span class="hljs-string">&apos;Nav&apos;</span>].plot(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span><br><span class="line">MA2050[<span class="hljs-string">&apos;Nav&apos;</span>].plot(ax=ax)</span><br><span class="line">MA50200[<span class="hljs-string">&apos;Nav&apos;</span>].plot(ax=ax)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;KLSE&apos;</span>].plot(ax=ax)</span><br><span class="line"><span class="hljs-comment"># plt.plot( &apos;Date&apos;,&apos;Nav&apos;, data = MA2050, marker=&apos;&apos;, color=&apos;olive&apos;, linewidth=2)</span></span><br><span class="line">ax.legend([<span class="hljs-string">&apos;MA1020&apos;</span>,<span class="hljs-string">&apos;MA2050&apos;</span>,<span class="hljs-string">&apos;MA50200&apos;</span>,<span class="hljs-string">&apos;KLSE&apos;</span>]);</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> prettytable <span class="hljs-keyword">import</span> PrettyTable</span><br><span class="line"></span><br><span class="line">t = PrettyTable([<span class="hljs-string">&apos;Strategy&apos;</span>, <span class="hljs-string">&apos;CAGR&apos;</span>, <span class="hljs-string">&apos;Win Rate&apos;</span>, <span class="hljs-string">&apos;Max Drawdown&apos;</span>])</span><br><span class="line">t.add_row([<span class="hljs-string">&apos;MA1020&apos;</span>, cagr1020,vr1020,mdd1020])</span><br><span class="line">t.add_row([<span class="hljs-string">&apos;MA2050&apos;</span>, cagr2050,vr2050,mdd2050])</span><br><span class="line">t.add_row([<span class="hljs-string">&apos;MA50200&apos;</span>, cagr50200,vr50200,mdd50200])</span><br><span class="line"></span><br><span class="line">print(t)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="/img/movingaverage.png" alt="png"></p>
+<pre><code>+----------+-------+----------+--------------+
+| Strategy |  CAGR | Win Rate | Max Drawdown |
++----------+-------+----------+--------------+
+|  MA1020  |  6.44 |  50.77   |     8.52     |
+|  MA2050  |  3.14 |  30.77   |    12.15     |
+| MA50200  | -0.89 |  28.57   |    30.08     |
++----------+-------+----------+--------------+</code></pre><h3 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h3><p>From the results, it seems like 10 and 20 moving average pair is the best<br><br>it consistently outperforms the benchmark.</p>
+<p>the rest are disappointing, <br><br>longer term pairs are more likely to perform better in long bull runs index like SP500.</p>
+<p>If you know coding, <br><br>you can try this out on other stocks that you like by getting csv data from Yahoo Finance.</p>
+<p><strong>This isn&#x2019;t any trading advice and the studies and analysis done were for educational and sharing purposes only</strong></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Strategy/">#Strategy</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python/">#Python</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/Window-Dressing/">How I found the most profitable month in Bursa using Python.</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://blog.klsequant.com/movingaverage/';
+        this.page.identifier = 'movingaverage/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'bursaquant' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 How Effective is Moving Average Strategy in KLSE?&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="LinkedIn" href="https://www.linkedin.com/in/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-linkedin"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="E-mail" href="mailto:thecqf97@gmail.com">
+                    
+                    <i class="far fa-envelope"></i>
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

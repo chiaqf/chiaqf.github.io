@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>用数据告诉你均线策略在马股的有效性 - &lt;/&gt;klsequant | Solving the Market using Maths</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<link href="/movingaverage/" rel="alternate" hreflang="en" />
+    
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="&amp;#x7528;&amp;#x6570;&amp;#x636E;&amp;#x544A;&amp;#x8BC9;&amp;#x4F60;&amp;#x5747;&amp;#x7EBF;&amp;#x7B56;&amp;#x7565;&amp;#x5728;&amp;#x9A6C;&amp;#x80A1;&amp;#x7684;&amp;#x6709;&amp;#x6548;&amp;#x6027;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用数据告诉你均线策略在马股的有效性">
+<meta property="og:url" content="https://blog.klsequant.com/zh-cn/movingaverage/index.html">
+<meta property="og:site_name" content="&lt;&#x2F;&gt;klsequant | Solving the Market using Maths">
+<meta property="og:description" content="&amp;#x7528;&amp;#x6570;&amp;#x636E;&amp;#x544A;&amp;#x8BC9;&amp;#x4F60;&amp;#x5747;&amp;#x7EBF;&amp;#x7B56;&amp;#x7565;&amp;#x5728;&amp;#x9A6C;&amp;#x80A1;&amp;#x7684;&amp;#x6709;&amp;#x6548;&amp;#x6027;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.klsequant.com/img/movingaverage.png">
+<meta property="article:published_time" content="2021-05-23T08:33:32.000Z">
+<meta property="article:modified_time" content="2021-05-23T08:39:20.970Z">
+<meta property="article:tag" content="Strategy">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.klsequant.com/img/movingaverage.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171670897-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171670897-1');
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/zh-cn">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/zh-cn/archives">归档</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+            
+<div class="column is-narrow has-text-centered">
+    <div class="dropdown is-up is-right is-hoverable" style="margin-top: -0.2em;">
+        <div class="dropdown-trigger">
+            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu7">
+                <span class="icon">
+                    <i class="fas fa-globe"></i>
+                </span>
+                <span>简体中文</span>
+                <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </button>
+        </div>
+        <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
+            <div class="dropdown-content">
+            
+                <a href="/movingaverage/" class="dropdown-item">
+                    English
+                </a>
+            
+                <a href="/zh-cn/movingaverage/" class="dropdown-item">
+                    简体中文
+                </a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            用数据告诉你均线策略在马股的有效性
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2021-05-23T08:33:32.000Z" itemprop="datePublished">5月 23 2021</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            5 分钟 读完 (约 805 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>&#x7528;&#x6570;&#x636E;&#x544A;&#x8BC9;&#x4F60;&#x5747;&#x7EBF;&#x7B56;&#x7565;&#x5728;&#x9A6C;&#x80A1;&#x7684;&#x6709;&#x6548;&#x6027;</p>
+<a id="more"></a>
+
+<h3 id="&#x5747;&#x7EBF;&#x7B56;&#x7565;"><a href="#&#x5747;&#x7EBF;&#x7B56;&#x7565;" class="headerlink" title="&#x5747;&#x7EBF;&#x7B56;&#x7565;"></a>&#x5747;&#x7EBF;&#x7B56;&#x7565;</h3><p>&#x79FB;&#x52A8;&#x5747;&#x7EBF;&#x7B97;&#x662F;&#x4EA4;&#x6613;&#x8005;&#x4EEC;&#x6700;&#x5E38;&#x7528;&#x7684;&#x6307;&#x6807;&#x4E4B;&#x4E00;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x5B83;&#x5728;&#x5404;&#x5927;&#x7F51;&#x7AD9;&#x6216;&#x56FE;&#x6807;&#x8F6F;&#x4EF6;&#x90FD;&#x80FD;&#x89C1;&#x5230;&#x5B83;&#x7684;&#x8E2A;&#x5F71;&#x3002;</p>
+<p>&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x5E38;&#x7528;&#x7684;&#x7B56;&#x7565;&#x5C31;&#x662F;&#x91D1;&#x53C9;/&#x6B7B;&#x53C9;&#x7B56;&#x7565;&#xFF0C;<br><br>&#x5FEB;&#x7EBF;&#x7A7F;&#x8FC7;&#x6162;&#x7EBF;&#x65F6;&#x4E70;&#x5165;&#xFF0C;<br><br>&#x5FEB;&#x7EBF;&#x8DCC;&#x7834;&#x6162;&#x7EBF;&#x65F6;&#x5356;&#x51FA;&#x3002;<br></p>
+<p>&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x6211;&#x4EEC;&#x6765;&#x63A2;&#x8BA8;&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x5728;&#x9A6C;&#x80A1;KLSE&#x6307;&#x6570;&#x7684;&#x8868;&#x73B0;&#x5982;&#x4F55;&#x3002;</p>
+<h3 id="&#x6570;&#x636E;&#x8BFB;&#x53D6;"><a href="#&#x6570;&#x636E;&#x8BFB;&#x53D6;" class="headerlink" title="&#x6570;&#x636E;&#x8BFB;&#x53D6;"></a>&#x6570;&#x636E;&#x8BFB;&#x53D6;</h3><p>&#x6211;&#x4ECE;Yahoo Finance&#x4E0A;&#x4E0B;&#x8F7D;&#x4E86;KLSE&#x6307;&#x6570;&#x7684;&#x5386;&#x53F2;&#x6570;&#x636E;&#xFF0C;<br><br>&#x8981;&#x5206;&#x6790;&#x6570;&#x636E;&#x5F97;&#x5148;&#x8BFB;&#x53D6;&#x8FD9;&#x4E2A;csv&#x6587;&#x4EF6;&#x3002;</p>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">KLSE = pd.read_csv(<span class="hljs-string">&apos;KLSE.csv&apos;</span>)</span><br><span class="line">KLSE = KLSE.replace(<span class="hljs-string">&apos;,&apos;</span>,<span class="hljs-string">&apos;&apos;</span>, regex=<span class="hljs-literal">True</span>)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;Open&apos;</span>] = KLSE[<span class="hljs-string">&apos;Open&apos;</span>].astype(float)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;Close&apos;</span>] = KLSE[<span class="hljs-string">&apos;Close&apos;</span>].astype(float)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;Change&apos;</span>] = (KLSE[<span class="hljs-string">&apos;Close&apos;</span>] - KLSE[<span class="hljs-string">&apos;Close&apos;</span>].shift(<span class="hljs-number">1</span>))/KLSE[<span class="hljs-string">&apos;Open&apos;</span>] + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">KLSE.head()</span><br></pre></td></tr></tbody></table></figure><p></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4-Jan-10</td>
+      <td>1272.31</td>
+      <td>1275.75</td>
+      <td>1272.25</td>
+      <td>1275.75</td>
+      <td>1275.75</td>
+      <td>56508200</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5-Jan-10</td>
+      <td>1278.26</td>
+      <td>1290.55</td>
+      <td>1278.26</td>
+      <td>1288.24</td>
+      <td>1288.24</td>
+      <td>136646600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6-Jan-10</td>
+      <td>1288.86</td>
+      <td>1296.44</td>
+      <td>1288.02</td>
+      <td>1293.17</td>
+      <td>1293.17</td>
+      <td>117740300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7-Jan-10</td>
+      <td>1293.69</td>
+      <td>1299.70</td>
+      <td>1290.36</td>
+      <td>1291.42</td>
+      <td>1291.42</td>
+      <td>115024400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8-Jan-10</td>
+      <td>1294.93</td>
+      <td>1295.51</td>
+      <td>1290.86</td>
+      <td>1292.98</td>
+      <td>1292.98</td>
+      <td>74587200</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="&#x7B56;&#x7565;&#x89C4;&#x5219;"><a href="#&#x7B56;&#x7565;&#x89C4;&#x5219;" class="headerlink" title="&#x7B56;&#x7565;&#x89C4;&#x5219;"></a>&#x7B56;&#x7565;&#x89C4;&#x5219;</h3><p>&#x6211;&#x4EEC;&#x4EE5;&#x6700;&#x7B80;&#x5355;&#x7684;&#x53CC;&#x5747;&#x7EBF;&#x7B56;&#x7565;&#x8FDB;&#x884C;&#x56DE;&#x6D4B;&#xFF0C;<br><br>&#x5177;&#x4F53;&#x89C4;&#x5219;&#xFF1A;</p>
+<ol>
+<li>&#x5FEB;&#x7EBF;&#x7A7F;&#x8FC7;&#x6162;&#x7EBF;&#x65F6;&#x4E70;&#x5165;</li>
+<li>&#x5FEB;&#x7EBF;&#x8DCC;&#x7834;&#x6162;&#x7EBF;&#x65F6;&#x5356;&#x51FA;</li>
+<li>&#x4E0D;&#x8003;&#x8651;&#x4EA4;&#x6613;&#x6210;&#x672C;</li>
+</ol>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">simulate</span><span class="hljs-params">(df,fast,slow)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">import</span> talib</span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;fast&apos;</span>] = talib.SMA(df[<span class="hljs-string">&apos;Close&apos;</span>],fast)</span><br><span class="line">    df[<span class="hljs-string">&apos;slow&apos;</span>] = talib.SMA(df[<span class="hljs-string">&apos;Close&apos;</span>],slow)</span><br><span class="line">    </span><br><span class="line">    df.dropna(inplace = <span class="hljs-literal">True</span>)</span><br><span class="line"></span><br><span class="line">    gold_cross = df[df[<span class="hljs-string">&apos;fast&apos;</span>] &gt; df[<span class="hljs-string">&apos;slow&apos;</span>]].index</span><br><span class="line">    df.loc[gold_cross,<span class="hljs-string">&apos;Cross&apos;</span>] = <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    gold_cross = df[df[<span class="hljs-string">&apos;fast&apos;</span>] &lt; df[<span class="hljs-string">&apos;slow&apos;</span>]].index</span><br><span class="line">    df.loc[gold_cross,<span class="hljs-string">&apos;Cross&apos;</span>] = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;Buy&apos;</span>] = df[<span class="hljs-string">&apos;Cross&apos;</span>].diff()</span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;Return&apos;</span>] = df[<span class="hljs-string">&apos;Cross&apos;</span>]*df[<span class="hljs-string">&apos;Change&apos;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">norm</span><span class="hljs-params">(x)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> x == <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> x</span><br><span class="line"></span><br><span class="line">    df[<span class="hljs-string">&apos;Return&apos;</span>] = df[<span class="hljs-string">&apos;Return&apos;</span>].apply(<span class="hljs-keyword">lambda</span> x: norm(x))</span><br><span class="line">    df[<span class="hljs-string">&apos;Nav&apos;</span>] = (df[<span class="hljs-string">&apos;Return&apos;</span>]).cumprod()</span><br><span class="line"></span><br><span class="line">    price_in = df.loc[df[<span class="hljs-string">&apos;Buy&apos;</span>] == <span class="hljs-number">1</span>,<span class="hljs-string">&apos;Close&apos;</span>].values</span><br><span class="line">    price_out = df.loc[df[<span class="hljs-string">&apos;Buy&apos;</span>] == <span class="hljs-number">-1</span>,<span class="hljs-string">&apos;Close&apos;</span>].values</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># divide by 252 because generally a year has 252 trading days</span></span><br><span class="line">    num_periods = df.shape[<span class="hljs-number">0</span>]/<span class="hljs-number">252</span></span><br><span class="line">    rety = ((df[<span class="hljs-string">&apos;Nav&apos;</span>].iloc[<span class="hljs-number">-1</span>] / df[<span class="hljs-string">&apos;Nav&apos;</span>].iloc[<span class="hljs-number">0</span>]) ** (<span class="hljs-number">1</span> / (num_periods - <span class="hljs-number">1</span>)) - <span class="hljs-number">1</span>)*<span class="hljs-number">100.0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> len(price_out) &gt; len(price_in):</span><br><span class="line">        price_out = price_out[:len(price_in)]</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">if</span> len(price_in) &gt; len(price_out):</span><br><span class="line">        price_in = price_in[:len(price_out)]</span><br><span class="line">        </span><br><span class="line">    VictoryRatio = ((price_out - price_in)&gt;<span class="hljs-number">0</span>).mean()*<span class="hljs-number">100.0</span></span><br><span class="line">    DD = <span class="hljs-number">1</span> - df[<span class="hljs-string">&apos;Nav&apos;</span>]/df[<span class="hljs-string">&apos;Nav&apos;</span>].cummax()</span><br><span class="line">    MDD = max(DD)*<span class="hljs-number">100.0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> df, round(rety, <span class="hljs-number">2</span>), round(VictoryRatio, <span class="hljs-number">2</span>), round(MDD,<span class="hljs-number">2</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="&#x7B56;&#x7565;&#x8868;&#x73B0;"><a href="#&#x7B56;&#x7565;&#x8868;&#x73B0;" class="headerlink" title="&#x7B56;&#x7565;&#x8868;&#x73B0;"></a>&#x7B56;&#x7565;&#x8868;&#x73B0;</h3><p>&#x6211;&#x4EEC;&#x6D4B;&#x8BD5;3&#x5BF9;&#x7684;&#x5747;&#x7EBF;&#xFF0C;<br><br>&#x6BD5;&#x7ADF;&#x6BCF;&#x4E2A;&#x4EBA;&#x90FD;&#x4F1A;&#x6709;&#x81EA;&#x5DF1;&#x559C;&#x6B22;&#x7684;&#x5747;&#x7EBF;&#x7EC4;&#x5408;</p>
+<ol>
+<li>10&#x5929;&#x7EBF; &#x548C; 20&#x5929;&#x7EBF; (&#x77ED;&#x671F;&#x4EA4;&#x6613;)</li>
+<li>20&#x5929;&#x7EBF; &#x548C; 50&#x5929;&#x7EBF; (&#x4E2D;&#x671F;&#x4EA4;&#x6613;)</li>
+<li>50&#x5929;&#x7EBF; &#x548C; 200&#x5929;&#x7EBF; (&#x957F;&#x671F;&#x4EA4;&#x6613;)</li>
+</ol>
+<p></p><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">MA1020,cagr1020,vr1020,mdd1020 = simulate(KLSE.copy(),<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)</span><br><span class="line">MA2050,cagr2050,vr2050,mdd2050 = simulate(KLSE.copy(),<span class="hljs-number">20</span>,<span class="hljs-number">50</span>)</span><br><span class="line">MA50200,cagr50200,vr50200,mdd50200 = simulate(KLSE.copy(),<span class="hljs-number">50</span>,<span class="hljs-number">200</span>)</span><br><span class="line"></span><br><span class="line">KLSE[<span class="hljs-string">&apos;KLSE&apos;</span>] = (KLSE[<span class="hljs-string">&apos;Change&apos;</span>]).cumprod()</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line">plt.style.use(<span class="hljs-string">&apos;seaborn&apos;</span>)</span><br><span class="line"></span><br><span class="line">ax = MA1020[<span class="hljs-string">&apos;Nav&apos;</span>].plot(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span><br><span class="line">MA2050[<span class="hljs-string">&apos;Nav&apos;</span>].plot(ax=ax)</span><br><span class="line">MA50200[<span class="hljs-string">&apos;Nav&apos;</span>].plot(ax=ax)</span><br><span class="line">KLSE[<span class="hljs-string">&apos;KLSE&apos;</span>].plot(ax=ax)</span><br><span class="line"><span class="hljs-comment"># plt.plot( &apos;Date&apos;,&apos;Nav&apos;, data = MA2050, marker=&apos;&apos;, color=&apos;olive&apos;, linewidth=2)</span></span><br><span class="line">ax.legend([<span class="hljs-string">&apos;MA1020&apos;</span>,<span class="hljs-string">&apos;MA2050&apos;</span>,<span class="hljs-string">&apos;MA50200&apos;</span>,<span class="hljs-string">&apos;KLSE&apos;</span>]);</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> prettytable <span class="hljs-keyword">import</span> PrettyTable</span><br><span class="line"></span><br><span class="line">t = PrettyTable([<span class="hljs-string">&apos;Strategy&apos;</span>, <span class="hljs-string">&apos;CAGR&apos;</span>, <span class="hljs-string">&apos;Win Rate&apos;</span>, <span class="hljs-string">&apos;Max Drawdown&apos;</span>])</span><br><span class="line">t.add_row([<span class="hljs-string">&apos;MA1020&apos;</span>, cagr1020,vr1020,mdd1020])</span><br><span class="line">t.add_row([<span class="hljs-string">&apos;MA2050&apos;</span>, cagr2050,vr2050,mdd2050])</span><br><span class="line">t.add_row([<span class="hljs-string">&apos;MA50200&apos;</span>, cagr50200,vr50200,mdd50200])</span><br><span class="line"></span><br><span class="line">print(t)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="/img/movingaverage.png" alt="png"></p>
+<pre><code>+----------+-------+----------+--------------+
+| Strategy |  CAGR | Win Rate | Max Drawdown |
++----------+-------+----------+--------------+
+|  MA1020  |  6.44 |  50.77   |     8.52     |
+|  MA2050  |  3.14 |  30.77   |    12.15     |
+| MA50200  | -0.89 |  28.57   |    30.08     |
++----------+-------+----------+--------------+</code></pre><h3 id="&#x60F3;&#x6CD5;"><a href="#&#x60F3;&#x6CD5;" class="headerlink" title="&#x60F3;&#x6CD5;"></a>&#x60F3;&#x6CD5;</h3><p>&#x4ECE;&#x6570;&#x636E;&#x6765;&#x770B;&#xFF0C;&#x770B;&#x6765;&#x77ED;&#x671F;&#x7684;&#x7B56;&#x7565;&#x6700;&#x9002;&#x5408;KLSE&#x6307;&#x6570; <br><br>&#x5B83;&#x7684;&#x8D62;&#x7387;&#x4E5F;&#x662F;&#x6700;&#x9AD8;&#x7684;&#x3002;<br><br>&#x800C;&#x4E14;&#x4E5F;&#x5927;&#x5E45;&#x8DD1;&#x8D62;KLSE&#x6307;&#x6570;&#x3002;</p>
+<p>&#x8F83;&#x957F;&#x671F;&#x7684;&#x5747;&#x7EBF;&#x7EC4;&#x5408;&#x7684;&#x8868;&#x73B0;&#x8F83;&#x5DEE;&#x5F3A;&#x4EBA;&#x610F;&#xFF0C;<br><br>&#x6709;&#x4E9B;&#x8868;&#x73B0;&#x8FD8;&#x4E0D;&#x5982;&#x76F4;&#x63A5;&#x4E70;&#x5165;&#x6301;&#x6709;&#x3002;</p>
+<p>&#x8FD9;&#x53EF;&#x80FD;&#x662F;&#x56E0;&#x4E3A;KLSE&#x6307;&#x6570;&#x7684;&#x957F;&#x671F;&#x8D70;&#x52BF;&#x4E0D;&#x5F3A;&#xFF0C;<br><br>&#x5982;&#x679C;&#x628A;&#x8FD9;&#x7B56;&#x7565;&#x5957;&#x7528;&#x5728;&#x957F;&#x671F;&#x8D70;&#x52BF;&#x5F3A;&#x52B2;&#x7684;&#x6307;&#x6570;&#xFF08;&#x6BD4;&#x5982;SP500&#xFF09;&#xFF0C;<br><br>&#x76F8;&#x4FE1;&#x6210;&#x7EE9;&#x4F1A;&#x597D;&#x770B;&#x5F97;&#x591A;&#x3002;</p>
+<p>&#x60F3;&#x8981;&#x81EA;&#x5DF1;&#x6D4B;&#x8BD5;&#x7684;&#x8BFB;&#x8005;&#x53EF;&#x4EE5;&#x4ECE;Yahoo Finance&#x4E0B;&#x8F7D;&#x60F3;&#x8981;&#x7684;&#x4E2A;&#x80A1;&#x6570;&#x636E;&#x6765;&#x5206;&#x6790;&#x770B;&#x770B;&#x3002;</p>
+<p><strong>&#x7EAF;&#x5C5E;&#x5206;&#x4EAB;&#xFF0C;&#x65E0;&#x4E70;&#x5356;&#x5EFA;&#x8BAE;</strong></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/zh-cn/tags/Strategy/">#Strategy</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/zh-cn/tags/Python/">#Python</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/zh-cn/Window-Dressing/">用Python告诉你马股哪个月最容易赚钱!</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://blog.klsequant.com/zh-cn/movingaverage/';
+        this.page.identifier = 'zh-cn/movingaverage/';
+        
+        this.language = 'zh';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'bursaquant' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 用数据告诉你均线策略在马股的有效性&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="LinkedIn" href="https://www.linkedin.com/in/chiaqf" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-linkedin"></i>
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="E-mail" href="mailto:thecqf97@gmail.com">
+                    
+                    <i class="far fa-envelope"></i>
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.zh-cn.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
